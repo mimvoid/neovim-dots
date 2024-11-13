@@ -1,5 +1,9 @@
+column_width = 120
 line_endings = "Unix"
 indent_type = "Spaces"
 indent_width = 2
-quote_style = "AutoPreferSingle"
+quote_style = "AutoPreferDuoble"
 call_parentheses = "NoSingleTable"
+
+[sort_requires]
+enabled = false

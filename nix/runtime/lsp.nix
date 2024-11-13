@@ -27,7 +27,7 @@ let
     ruff
   ];
 
-  # r = [ (pkgs.callPackage ../pkgs/r-nvim { }) ];
+  r = [ (pkgs.callPackage ../pkgs/r-nvim { }) ];
   rust = [ rust-analyzer ];
 
   typescript = [ typescript-language-server ];

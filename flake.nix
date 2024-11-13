@@ -46,7 +46,7 @@
     extra_pkg_config = { };
 
     configuration = { pkgs, ... }: {
-      luaPath = ./.;
+      luaPath = "${./.}";
       imports = [ ./nix/configuration.nix ];
 
       settings = {

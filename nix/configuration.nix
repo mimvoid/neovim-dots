@@ -3,26 +3,30 @@
 {
   imports = [
     ./plugins
-    # ./runtime
+    ./runtime
   ];
 
-  # Plugins you use in your configuration.
   plugins = with pkgs.vimPlugins; [
+    lazy-nvim
+
+    nvim-lspconfig
     nvim-autopairs
     nvim-dap
     gitsigns-nvim
     indent-blankline-nvim
     nvim-lint
     neo-tree-nvim
+    which-key-nvim
   ];
 
-  # Runtime dependencies. This is thing like tree-sitter, lsps or programs
-  # like ripgrep.
-  runtimeDeps = with pkgs; [ ];
+  runtimeDeps = with pkgs; [
+    make
+    unzip
+    ripgrep
+  ];
 
   environmentVariables = { };
 
-  # Aliases for the patched config
   aliases = [ "vim" "vi" ];
 
   # Extra wrapper args you want to pass.
@@ -40,5 +44,4 @@
   extraConfig = [ ];
 
   # customSubs = with patchUtils; [ ];
-
 }
