@@ -10,18 +10,10 @@
     lazy-nvim
 
     nvim-lspconfig
-    nvim-autopairs
-    nvim-dap
-    gitsigns-nvim
-    indent-blankline-nvim
-    nvim-lint
-    neo-tree-nvim
-    which-key-nvim
+    # nvim-dap
   ];
 
   runtimeDeps = with pkgs; [
-    make
-    unzip
     ripgrep
   ];
 

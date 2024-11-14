@@ -13,21 +13,14 @@ let
 
   latex = [ texlab ];
 
-  lua = [
-    lua-language-server
-    stylua
-  ];
+  lua = [ lua-language-server ];
 
   markdown = [ marksman ];
 
   nix = [ nixd ];
 
-  python = [
-    basedpyright
-    ruff
-  ];
+  python = [ basedpyright ];
 
-  r = [ (pkgs.callPackage ../pkgs/r-nvim { }) ];
   rust = [ rust-analyzer ];
 
   typescript = [ typescript-language-server ];

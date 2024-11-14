@@ -12,7 +12,7 @@ local load_lazy = utils.set(function()
       "clone",
       "--filter=blob:none",
       "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable", -- latest stable release
+      "--branch=stable",
       lazypath,
     })
   end
@@ -32,4 +32,4 @@ end)
 
 load_lazy()
 
-require("lazy").setup("plugins", { })
+require("lazy").setup({ import = "plugins" })
