@@ -41,7 +41,7 @@
   let
     # Easily configure a custom name, this will affect the name of the standard
     # executable, you can add as many aliases as you'd like in the configuration.
-    name = "nixPatch";
+    name = "nvim";
 
     extra_pkg_config = { };
 
@@ -55,7 +55,7 @@
         withPerl = false;
         withPython3 = false;
         extraName = "";
-        configDirName = "nvim-test";
+        configDirName = "nvim";
         neovim-unwrapped = null;
 
         # Whether to add custom substitution made in the original repo, makes for
