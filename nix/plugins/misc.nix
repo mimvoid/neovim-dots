@@ -8,5 +8,6 @@
       telescope-nvim
       
       plenary-nvim
+      persistence-nvim
     ];
 }

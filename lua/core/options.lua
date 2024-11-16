@@ -24,7 +24,7 @@ vim.opt.wrap = true
 
 -- Sync clipboard between OS and Neovim.
 vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
+  vim.opt.clipboard = "unnamedplus"
 end)
 
 -- Backups
@@ -73,3 +73,29 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
+
+local disabled_built_ins = {
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  "gzip",
+  "zip",
+  "zipPlugin",
+  "tar",
+  "tarPlugin",
+  "getscript",
+  "getscriptPlugin",
+  "vimball",
+  "vimballPlugin",
+  "2html_plugin",
+  "logipat",
+  "rrhelper",
+  "spellfile_plugin",
+  "matchit",
+  "tutor_mode_plugin",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g["loaded_" .. plugin] = 1
+end

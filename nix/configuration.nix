@@ -14,6 +14,8 @@
   ];
 
   runtimeDeps = with pkgs; [
+    universal-ctags
+    gcc
     ripgrep
   ];
 
@@ -22,8 +24,6 @@
   aliases = [ "vim" "vi" ];
 
   # Extra wrapper args you want to pass.
-  # Look here if you don't know what those are:
-  # https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
   extraWrapperArgs = [ ];
 
   python3Packages = [ ];
