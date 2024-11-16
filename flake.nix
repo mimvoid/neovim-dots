@@ -58,7 +58,7 @@
         configDirName = "nvim-test";
         neovim-unwrapped = null;
 
-        # Whether to add custom subsitution made in the original repo, makes for
+        # Whether to add custom substitution made in the original repo, makes for
         # a better out of the box experience
         patchSubs = true;
 
