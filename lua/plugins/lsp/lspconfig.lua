@@ -1,23 +1,24 @@
 return {
   "neovim/nvim-lspconfig",
 
-  -- dependencies = {
-  --   {
-  --     'williamboman/mason.nvim',
-  --     enabled = require("utils").set(true, false),
-  --     config = true,
-  --   }, -- NOTE: Must be loaded before dependants
-  --   {
-  --     'williamboman/mason-lspconfig.nvim',
-  --     enabled = require("utils").set(true, false),
-  --   },
-  --   {
-  --     'WhoIsSethDaniel/mason-tool-installer.nvim',
-  --     enabled = require("utils").set(true, false),
-  --   },
-  -- },
+  dependencies = {
+    { "Saghen/blink.cmp" },
+    {
+      "williamboman/mason.nvim",
+      enabled = require("utils").set(true, false),
+      config = true,
+    }, -- NOTE: Must be loaded before dependants
+    {
+      "williamboman/mason-lspconfig.nvim",
+      enabled = require("utils").set(true, false),
+    },
+    {
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      enabled = require("utils").set(true, false),
+    },
+  },
 
-  config = function()
+  config = function(_, opts)
     local servers = {
       bashls = {},
 
@@ -44,7 +45,7 @@ return {
               callSnippet = "Replace",
             },
             -- Ignore Lua_LS's noisy `missing-fields` warnings
-            diagnostics = { disable = { 'missing-fields' } },
+            diagnostics = { disable = { "missing-fields" } },
           },
         },
       },
@@ -53,6 +54,13 @@ return {
       nixd = {},
       texlab = {},
     }
+
+    -- Set up blink.cmp
+    local lspconfig = require("lspconfig")
+    for server, config in pairs(opts.servers or {}) do
+      config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+      lspconfig[server].setup(config)
+    end
 
     --  This function gets run when an LSP attaches to a particular buffer.
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -142,42 +150,35 @@ return {
       end
     end
 
-    -- LSP servers and clients are able to communicate to each other what features they support.
-    --  By default, Neovim doesn't support everything that is in the LSP specification.
-    --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-    --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+    local utils = require("utils")
 
-    -- local utils = require("utils")
-    --
-    -- if utils.isNix then
-    --   -- Use nixPatch if in Nix
-    --    for server_name,_ in pairs(servers) do
-    --      require('lspconfig')[server_name].setup({
-    --        capabilities = capabilities,
-    --        settings = servers[server_name],
-    --        filetypes = (servers[server_name] or {}).filetypes,
-    --        cmd = (servers[server_name] or {}).cmd,
-    --        root_pattern = (servers[server_name] or {}).root_pattern,
-    --      })
-    --    end
-    --  else
-    --   -- Use mason outside Nix
-    --    require('mason').setup()
-    --
-    --    local ensure_installed = vim.tbl_keys(servers or {})
-    --    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-    --
-    --    require('mason-lspconfig').setup {
-    --      handlers = {
-    --        function(server_name)
-    --          local server = servers[server_name] or {}
-    --          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-    --          require('lspconfig')[server_name].setup(server)
-    --        end,
-    --      },
-    --    }
-    --  end
-  end
+    if utils.isNix then
+      -- Use nixPatch if in Nix
+      for server_name, _ in pairs(servers) do
+        require("lspconfig")[server_name].setup {
+          capabilities = capabilities,
+          settings = servers[server_name],
+          filetypes = (servers[server_name] or {}).filetypes,
+          cmd = (servers[server_name] or {}).cmd,
+          root_pattern = (servers[server_name] or {}).root_pattern,
+        }
+      end
+    else
+      -- Use mason outside Nix
+      require("mason").setup()
+
+      local ensure_installed = vim.tbl_keys(servers or {})
+      require("mason-tool-installer").setup { ensure_installed = ensure_installed }
+
+      require("mason-lspconfig").setup {
+        handlers = {
+          function(server_name)
+            local server = servers[server_name] or {}
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            require("lspconfig")[server_name].setup(server)
+          end,
+        },
+      }
+    end
+  end,
 }
