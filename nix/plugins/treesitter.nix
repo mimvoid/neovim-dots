@@ -19,8 +19,5 @@ let
   );
 in
 {
-  runtimeDeps = pkgs.lib.mkAfter [
-    nvim-treesitter
-    pkgs.vimPlugins.nvim-treesitter-textobjects
-  ];
+  plugins = pkgs.lib.mkAfter [ nvim-treesitter ];
 }

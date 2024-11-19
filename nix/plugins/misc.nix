@@ -6,8 +6,6 @@
     [
       mini-nvim
       telescope-nvim
-      
       plenary-nvim
-      persistence-nvim
     ];
 }

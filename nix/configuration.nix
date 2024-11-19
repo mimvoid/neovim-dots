@@ -6,22 +6,9 @@
     ./runtime
   ];
 
-  plugins = with pkgs.vimPlugins; [
-    lazy-nvim
-
-    nvim-lspconfig
-    # nvim-dap
-  ];
-
-  runtimeDeps = with pkgs; [
-    universal-ctags
-    gcc
-    ripgrep
-  ];
-
   environmentVariables = { };
 
-  aliases = [ "vim" "vi" ];
+  aliases = [ ];
 
   # Extra wrapper args you want to pass.
   extraWrapperArgs = [ ];
