@@ -1,27 +1,60 @@
 return {
   "neovim/nvim-lspconfig",
+
+  -- dependencies = {
+  --   {
+  --     'williamboman/mason.nvim',
+  --     enabled = require("utils").set(true, false),
+  --     config = true,
+  --   }, -- NOTE: Must be loaded before dependants
+  --   {
+  --     'williamboman/mason-lspconfig.nvim',
+  --     enabled = require("utils").set(true, false),
+  --   },
+  --   {
+  --     'WhoIsSethDaniel/mason-tool-installer.nvim',
+  --     enabled = require("utils").set(true, false),
+  --   },
+  -- },
+
   config = function()
     local servers = {
+      bashls = {},
+
+      basedpyright = {
+        settings = {
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = "off",
+              inlayHints = {
+                variableTypes = false,
+                callArgumentNames = false,
+                functionReturnTypes = false,
+              },
+            },
+          },
+        },
+      },
+      ruff = {},
+
       lua_ls = {
-        -- cmd = {...},
-        -- filetypes = { ...},
-        -- capabilities = {},
         settings = {
           Lua = {
             completion = {
               callSnippet = "Replace",
             },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
+            -- Ignore Lua_LS's noisy `missing-fields` warnings
+            diagnostics = { disable = { 'missing-fields' } },
           },
         },
       },
+
+      marksman = {},
+      nixd = {},
+      texlab = {},
     }
 
     --  This function gets run when an LSP attaches to a particular buffer.
-    --    That is to say, every time a new file is opened that is associated with
-    --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-    --    function will be executed to configure the current buffer
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
@@ -115,5 +148,36 @@ return {
     --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
     -- local capabilities = vim.lsp.protocol.make_client_capabilities()
     -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-  end,
+
+    -- local utils = require("utils")
+    --
+    -- if utils.isNix then
+    --   -- Use nixPatch if in Nix
+    --    for server_name,_ in pairs(servers) do
+    --      require('lspconfig')[server_name].setup({
+    --        capabilities = capabilities,
+    --        settings = servers[server_name],
+    --        filetypes = (servers[server_name] or {}).filetypes,
+    --        cmd = (servers[server_name] or {}).cmd,
+    --        root_pattern = (servers[server_name] or {}).root_pattern,
+    --      })
+    --    end
+    --  else
+    --   -- Use mason outside Nix
+    --    require('mason').setup()
+    --
+    --    local ensure_installed = vim.tbl_keys(servers or {})
+    --    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+    --
+    --    require('mason-lspconfig').setup {
+    --      handlers = {
+    --        function(server_name)
+    --          local server = servers[server_name] or {}
+    --          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+    --          require('lspconfig')[server_name].setup(server)
+    --        end,
+    --      },
+    --    }
+    --  end
+  end
 }

@@ -1,11 +1,19 @@
 return {
   "echasnovski/mini.nvim",
   lazy = false,
+
+  keys = {
+    {
+      "<leader>e",
+      "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0), false)<cr>",
+      desc = "Open mini.files",
+    },
+  },
+
   config = function()
     require("mini.ai").setup { n_lines = 500 }
     require("mini.move").setup {}
     require("mini.surround").setup {}
-    require("mini.trailspace").setup {}
 
     require("mini.starter").setup {
       header = table.concat({
