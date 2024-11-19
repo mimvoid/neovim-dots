@@ -1,17 +1,16 @@
 { pkgs, ... }:
+let
+  langs = import ./languages.nix { inherit pkgs; };
 
-{
-  imports = [
-    ./lsp.nix
-    ./formatters.nix
-  ];
-
-  runtimeDeps = with pkgs; [
-    stdenv.cc.cc
-    universal-ctags
-    gcc
-    tree-sitter
-    ripgrep
-    fd
-  ];
-}
+  used-langs = pkgs.lib.lists.flatten (with langs;
+    [ nix lua latex markdown python ]
+  );
+in
+with pkgs;
+[
+  stdenv.cc.cc
+  tree-sitter
+  ripgrep
+  prettierd
+]
+++ used-langs

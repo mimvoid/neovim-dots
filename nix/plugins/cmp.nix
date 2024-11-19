@@ -1,18 +1,11 @@
-{ pkgs, ... }:
-let
-  blink-compat = pkgs.callPackage ../pkgs/blink-compat { };
-  cmp-r = pkgs.callPackage ../pkgs/cmp-r { };
-in
-{
-  plugins = with pkgs.vimPlugins;
-    pkgs.lib.mkAfter
-    [
-      blink-cmp
-      blink-compat
+{ pkgs, my, ... }:
 
-      cmp-r
+with pkgs.vimPlugins;
+[
+  blink-cmp
+  luasnip
+  friendly-snippets
 
-      luasnip
-      friendly-snippets
-    ];
-}
+  my.blink-compat
+  my.cmp-r
+]

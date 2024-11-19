@@ -1,17 +1,14 @@
 { pkgs, ... }:
 
-{
-  plugins = with pkgs.vimPlugins;
-    pkgs.lib.mkAfter
-    [
-      base16-nvim
+with pkgs.vimPlugins;
+[
+  base16-nvim
 
-      lualine-nvim
-      bufferline-nvim
-      alpha-nvim
-      nvim-web-devicons
+  lualine-nvim
+  bufferline-nvim
+  alpha-nvim
+  nvim-web-devicons
 
-      rainbow-delimiters-nvim
-      nvim-highlight-colors
-    ];
-}
+  rainbow-delimiters-nvim
+  nvim-highlight-colors
+]
