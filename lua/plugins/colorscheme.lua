@@ -25,7 +25,12 @@ return {
       base0F = "#55486b",
     }
 
-    -- You can configure highlights by doing something like:
-    -- vim.cmd.hi 'Comment gui=none'
+    -- Transparency
+    -- background
+    vim.cmd.highlight { "Normal", "guibg=NONE", "ctermbg=NONE" }
+    vim.cmd.highlight { "NonText", "guibg=NONE", "ctermbg=NONE" }
+
+    -- signcolumn
+    vim.cmd.highlight({ "SignColumn", "guibg=NONE", "ctermbg=NONE" })
   end,
 }
