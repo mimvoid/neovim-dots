@@ -18,5 +18,6 @@ vimUtils.buildVimPlugin {
   meta = {
     description = "Tabout plugin for Neovim";
     homepage = "https://github.com/kawre/neotab.nvim";
+    # license = lib.;
   };
 }

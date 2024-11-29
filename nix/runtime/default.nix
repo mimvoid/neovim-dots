@@ -1,9 +1,18 @@
 { pkgs, ... }:
 let
+  # List LSPs & formatter in a separate file
   langs = import ./languages.nix { inherit pkgs; };
 
-  used-langs = pkgs.lib.lists.flatten (with langs;
-    [ nix lua latex markdown python ]
+  # Specify which languages' tools to include
+  used-langs = pkgs.lib.lists.flatten (
+    with langs;
+    [
+      nix
+      lua
+      latex
+      markdown
+      python
+    ]
   );
 in
 with pkgs;

@@ -1,29 +1,32 @@
 { pkgs, ... }:
 let
   # Get custom packages
-  my = import ../pkgs { inherit pkgs; };
+  # Use with voids.<package>
+  voids = import ../pkgs { inherit pkgs; };
 
-  cmp = import ./cmp.nix { inherit pkgs my; };
-  looks = import ./looks.nix { inherit pkgs; };
-
-  language-specific = [
-    pkgs.vimPlugins.vimtex
-    my.r-nvim
-  ];
-
-  marks = [
-    pkgs.vimPlugins.marks-nvim
-    my.nvim-project-marks
-  ];
-
+  # Languages defined in a separate file
   treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (
     plugins: (import ../utils/treesitter-langs.nix { inherit plugins; })
   );
 
+  # Separated plugin lists
+  cmp = import ./cmp.nix { inherit pkgs voids; };
+  looks = import ./looks.nix { inherit pkgs; };
+
+  marks = [
+    pkgs.vimPlugins.marks-nvim
+    voids.nvim-project-marks
+  ];
+
   typing = with pkgs.vimPlugins; [
     ultimate-autopair-nvim
-    my.neotab
+    voids.neotab
     fcitx-vim
+  ];
+
+  lang-specific = [
+    pkgs.vimPlugins.vimtex
+    voids.r-nvim
   ];
 in
 with pkgs.vimPlugins;
@@ -31,14 +34,13 @@ with pkgs.vimPlugins;
   lazy-nvim
 
   nvim-lspconfig
-  treesitter
-
   mini-nvim
   telescope-nvim
   plenary-nvim
 ]
+++ [ treesitter ]
 ++ cmp
-++ language-specific
 ++ looks
 ++ marks
 ++ typing
+++ lang-specific

@@ -38,8 +38,6 @@
     forEachSystem = eachSystem nixpkgs.lib.platforms.all;
   in
   let
-    # Easily configure a custom name, this will affect the name of the standard
-    # executable, you can add as many aliases as you'd like in the configuration.
     name = "nvim";
 
     extra_pkg_config = { };
