@@ -6,5 +6,4 @@ return {
 
   "L3MON4D3/LuaSnip",
   "lilydjwg/fcitx.vim",
-  "HiPhish/rainbow-delimiters.nvim",
 }

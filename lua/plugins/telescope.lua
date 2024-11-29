@@ -1,12 +1,28 @@
+local colors = require("colors")
+
 return {
   "nvim-telescope/telescope.nvim",
   event = "VimEnter",
   branch = "0.1.x",
+
   dependencies = {
     "nvim-lua/plenary.nvim",
     { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
   },
+
   config = function()
+    -- Highlight groups
+    local groups = {
+      TelescopePreviewTitle = { bg = colors.base00, fg = colors.green },
+      TelescopePromptPrefix = { fg = colors.red },
+      TelescopePromptTitle = { bg = colors.base00, fg = colors.red },
+    }
+
+    for k, v in pairs(groups) do
+      vim.api.nvim_set_hl(0, k, v)
+    end
+
+    -- Setup
     require("telescope").setup {
       defaults = {
         dynamic_preview_title = true,

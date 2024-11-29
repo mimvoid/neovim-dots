@@ -1,3 +1,15 @@
+-- Set highlight groups
+local groups = {
+  BlinkCmpLabel = { link = "Normal" },
+  BlinkCmpMenu = { link = "NormalFloat" },
+  BlinkCmpMenuBorder = { link = "FloatBorder" },
+  BlinkCmpMenuSelection = { link = "Visual" },
+}
+
+for k, v in pairs(groups) do
+  vim.api.nvim_set_hl(0, k, v)
+end
+
 return {
   "saghen/blink.cmp",
   version = "v0.*",
