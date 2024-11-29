@@ -4,15 +4,15 @@
   vimUtils,
 }:
 
-vimUtils.buildVimPlugin {
+vimUtils.buildVimPlugin rec {
   pname = "blink.compat";
-  version = "unstable-2024-11-11";
+  version = "1.0.2";
 
   src = fetchFromGitHub {
     owner = "Saghen";
     repo = "blink.compat";
-    rev = "a951034404c14051129b47e09cfed83f7a306898";
-    hash = "sha256-/2fGykyb8gmAdchCf96udZLuBxN8feWkQ1BlCl5LsIw=";
+    rev = "v${version}";
+    hash = "sha256-4uoehv/qe74IivgXc69ekYLod3Zo+oPUvXJHtt4wc2U=";
   };
 
   meta = {
