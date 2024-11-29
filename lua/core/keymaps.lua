@@ -15,7 +15,7 @@ vim.keymap.set("i", "<A-l>", "<Right>", { desc = "Move right" })
 -- Buffers
 vim.keymap.set("n", "<leader>x", "<cmd>bp<bar>sp<bar>bn<bar>bd<cr>", { desc = "Close buffer" })
 vim.keymap.set("n", "<Tab>", "<cmd>bn<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<S-Tab", "<cmd>bp<cr>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<S-Tab>", "<cmd>bp<cr>", { desc = "Previous buffer" })
 
 -- Windows
 vim.keymap.set("n", "<leader>j", "<C-W>s", { desc = "Split window below" })
