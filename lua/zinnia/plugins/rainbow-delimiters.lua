@@ -1,4 +1,4 @@
-local colors = require("colors")
+local colors = require("zinnia.colors")
 
 return {
   "HiPhish/rainbow-delimiters.nvim",

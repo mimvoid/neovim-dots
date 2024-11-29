@@ -11,7 +11,7 @@ for k, v in pairs(groups) do
 end
 
 return {
-  "saghen/blink.cmp",
+  "Saghen/blink.cmp",
   version = "v0.*",
 
   lazy = false,

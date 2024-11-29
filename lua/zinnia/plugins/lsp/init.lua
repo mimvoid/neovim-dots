@@ -1,3 +1,6 @@
+local utils = require("zinnia.utils")
+local servers = require("zinnia.plugins.lsp.servers")
+
 return {
   "neovim/nvim-lspconfig",
 
@@ -5,61 +8,58 @@ return {
     { "Saghen/blink.cmp" },
     {
       "williamboman/mason.nvim",
-      enabled = require("utils").set(true, false),
+      enabled = utils.set(true, false),
       config = true,
     }, -- NOTE: Must be loaded before dependants
     {
       "williamboman/mason-lspconfig.nvim",
-      enabled = require("utils").set(true, false),
+      enabled = utils.set(true, false),
     },
     {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      enabled = require("utils").set(true, false),
+      enabled = utils.set(true, false),
     },
   },
 
-  config = function(_, opts)
-    local servers = {
-      bashls = {},
-
-      basedpyright = {
-        settings = {
-          basedpyright = {
-            analysis = {
-              typeCheckingMode = "off",
-              inlayHints = {
-                variableTypes = false,
-                callArgumentNames = false,
-                functionReturnTypes = false,
-              },
-            },
-          },
-        },
-      },
-      ruff = {},
-
-      lua_ls = {
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = "Replace",
-            },
-            -- Ignore Lua_LS's noisy `missing-fields` warnings
-            diagnostics = { disable = { "missing-fields" } },
-          },
-        },
-      },
-
-      marksman = {},
-      nixd = {},
-      texlab = {},
-    }
-
-    -- Set up blink.cmp
+  config = function()
     local lspconfig = require("lspconfig")
-    for server, config in pairs(opts.servers or {}) do
+
+    -- Capabilties
+    -- merge blink.cmp with opts[server].capabilities, if defined
+    for server, config in pairs(servers) do
       config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
       lspconfig[server].setup(config)
+    end
+
+    -- Packages
+    -- Use Nix or Meson as the package manager
+    if utils.isNix then
+      -- Use nixPatch if in Nix
+      for server_name,_ in pairs(servers) do
+        require('lspconfig')[server_name].setup({
+          capabilities = capabilities,
+          settings = servers[server_name],
+          filetypes = (servers[server_name] or {}).filetypes,
+          cmd = (servers[server_name] or {}).cmd,
+          root_pattern = (servers[server_name] or {}).root_pattern,
+        })
+      end
+    else
+     -- Use mason outside Nix
+      require('mason').setup()
+
+      local ensure_installed = vim.tbl_keys(servers or {})
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
+      require('mason-lspconfig').setup {
+        handlers = {
+          function(server_name)
+            local server = servers[server_name] or {}
+            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            require('lspconfig')[server_name].setup(server)
+          end,
+        },
+      }
     end
 
     --  This function gets run when an LSP attaches to a particular buffer.
@@ -73,20 +73,22 @@ return {
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
         end
 
+        local telescope = require("telescope.builtin")
+
         -- Jump to the definition of the word under your cursor.
         --  To jump back, press <C-t>.
-        map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-        map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-        map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-        map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+        map("gd", telescope.lsp_definitions, "[G]oto [D]efinition")
+        map("gr", telescope.lsp_references, "[G]oto [R]eferences")
+        map("gI", telescope.lsp_implementations, "[G]oto [I]mplementation")
+        map("<leader>D", telescope.lsp_type_definitions, "Type [D]efinition")
 
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+        map("<leader>ds", telescope.lsp_document_symbols, "[D]ocument [S]ymbols")
 
         -- Fuzzy find all the symbols in your current workspace.
         --  Similar to document symbols, except searches over your entire project.
-        map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+        map("<leader>ws", telescope.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
@@ -148,37 +150,6 @@ return {
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
-    end
-
-    local utils = require("utils")
-
-    if utils.isNix then
-      -- Use nixPatch if in Nix
-      for server_name, _ in pairs(servers) do
-        require("lspconfig")[server_name].setup {
-          capabilities = capabilities,
-          settings = servers[server_name],
-          filetypes = (servers[server_name] or {}).filetypes,
-          cmd = (servers[server_name] or {}).cmd,
-          root_pattern = (servers[server_name] or {}).root_pattern,
-        }
-      end
-    else
-      -- Use mason outside Nix
-      require("mason").setup()
-
-      local ensure_installed = vim.tbl_keys(servers or {})
-      require("mason-tool-installer").setup { ensure_installed = ensure_installed }
-
-      require("mason-lspconfig").setup {
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
-      }
     end
   end,
 }

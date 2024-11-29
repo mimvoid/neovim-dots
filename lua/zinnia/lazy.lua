@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require("zinnia.utils")
 
 local load_lazy = utils.set(function()
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -29,8 +29,4 @@ end)
 
 load_lazy()
 
-require("lazy").setup {
-  { import = "plugins" },
-  { import = "plugins.lsp" },
-  { import = "plugins.mini" },
-}
+require("lazy").setup("zinnia.plugins")

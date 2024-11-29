@@ -1,4 +1,4 @@
-local M = {
+return {
   base00 = "#25223a",
   base01 = "#312c48",
   base02 = "#38344e",
@@ -16,5 +16,3 @@ local M = {
   cyan = "#b1b5e4",
   blue = "#9673de",
 }
-
-return M

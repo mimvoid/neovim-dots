@@ -1,4 +1,4 @@
-local colors = require("colors")
+local colors = require("zinnia.colors")
 
 return {
   "nvim-telescope/telescope.nvim",
