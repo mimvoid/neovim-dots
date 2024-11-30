@@ -1,3 +1,7 @@
+local starter = require("zinnia.plugins.mini.mini-starter")
+local hipatterns = require("zinnia.plugins.mini.mini-hipatterns")
+local clue = require("zinnia.plugins.mini.mini-clue")
+
 return {
   "echasnovski/mini.nvim",
   lazy = false,
@@ -15,19 +19,9 @@ return {
     require("mini.move").setup {}
     require("mini.surround").setup {}
 
-    require("mini.starter").setup {
-      header = table.concat({
-        [[███╗   ██╗███████╗ ███████╗ ██╗   ██╗██╗███╗   ███╗]],
-        [[████╗  ██║██╔════╝██╔════██╗██║   ██║██║████╗ ████║]],
-        [[██╔██╗ ██║█████╗  ██║  ♥ ██║██║   ██║██║██╔████╔██║]],
-        [[██║╚██╗██║██╔══╝  ██║    ██║╚██╗ ██╔╝██║██║╚██╔╝██║]],
-        [[██║ ╚████║███████╗╚███████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║]],
-        [[╚═╝  ╚═══╝╚══════╝ ╚══════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
-      }, "\n"),
-
-      footer = os.date(),
-      evaluate_single = true,
-    }
+    -- Use the tables from the other files
+    require("mini.starter").setup(starter)
+    require("mini.hipatterns").setup(hipatterns)
 
     require("mini.clue").setup {
       clues = {
@@ -38,37 +32,7 @@ return {
         require("mini.clue").gen_clues.windows(),
         require("mini.clue").gen_clues.z(),
       },
-      triggers = {
-        -- Leader triggers
-        { mode = "n", keys = "<Leader>" },
-        { mode = "x", keys = "<Leader>" },
-
-        -- Built-in completion
-        { mode = "i", keys = "<C-x>" },
-
-        -- `g` key
-        { mode = "n", keys = "g" },
-        { mode = "x", keys = "g" },
-
-        -- Marks
-        { mode = "n", keys = "'" },
-        { mode = "n", keys = "`" },
-        { mode = "x", keys = "'" },
-        { mode = "x", keys = "`" },
-
-        -- Registers
-        { mode = "n", keys = '"' },
-        { mode = "x", keys = '"' },
-        { mode = "i", keys = "<C-r>" },
-        { mode = "c", keys = "<C-r>" },
-
-        -- Window commands
-        { mode = "n", keys = "<C-w>" },
-
-        -- `z` key
-        { mode = "n", keys = "z" },
-        { mode = "x", keys = "z" },
-      },
+      triggers = clue.triggers,
     }
 
     require("mini.diff").setup {
@@ -83,31 +47,6 @@ return {
       mappings = { go_in_plus = "<cr>" },
       options = { permanent_delete = false, use_as_default_explorer = true },
       windows = { width_focus = 25, width_nofocus = 15 },
-    }
-
-    require("mini.hipatterns").setup {
-      highlighters = {
-        fixme = {
-          extmark_opts = { sign_text = "" },
-          group = "MiniHipatternsFixme",
-          pattern = "FIXME:",
-        },
-        hack = {
-          extmark_opts = { sign_text = "" },
-          group = "MiniHipatternsHack",
-          pattern = "HACK:",
-        },
-        note = {
-          extmark_opts = { sign_text = "" },
-          group = "MiniHipatternsNote",
-          pattern = "NOTE:",
-        },
-        todo = {
-          extmark_opts = { sign_text = "" },
-          group = "MiniHipatternsTodo",
-          pattern = "TODO:",
-        },
-      },
     }
   end,
 }
