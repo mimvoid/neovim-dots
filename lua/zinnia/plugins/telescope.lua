@@ -23,7 +23,7 @@ return {
     end
 
     -- Setup
-    require("telescope").setup {
+    require("telescope").setup({
       defaults = {
         dynamic_preview_title = true,
         file_ignore_patterns = {
@@ -64,7 +64,7 @@ return {
           "!**/.git/*",
         },
       },
-    }
+    })
 
     -- Enable Telescope extensions if they are installed
     -- pcall(require('telescope').load_extension, 'fzf')
@@ -83,15 +83,15 @@ return {
     vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
     vim.keymap.set("n", "<leader>f/", function()
-      builtin.live_grep {
+      builtin.live_grep({
         grep_open_files = true,
         prompt_title = "Live Grep in Open Files",
-      }
+      })
     end, { desc = "[F]ind [/] in Open Files" })
 
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set("n", "<leader>fn", function()
-      builtin.find_files { cwd = vim.fn.stdpath("config") }
+      builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "[F]ind [N]eovim files" })
   end,
 }

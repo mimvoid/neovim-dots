@@ -5,5 +5,5 @@ return {
 
   config = function()
     vim.g.rout_follow_colorscheme = true
-  end
+  end,
 }

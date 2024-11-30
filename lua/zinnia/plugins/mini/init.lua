@@ -15,15 +15,15 @@ return {
   },
 
   config = function()
-    require("mini.ai").setup { n_lines = 500 }
-    require("mini.move").setup {}
-    require("mini.surround").setup {}
+    require("mini.ai").setup({ n_lines = 500 })
+    require("mini.move").setup({})
+    require("mini.surround").setup({})
 
     -- Use the tables from the other files
     require("mini.starter").setup(starter)
     require("mini.hipatterns").setup(hipatterns)
 
-    require("mini.clue").setup {
+    require("mini.clue").setup({
       clues = {
         require("mini.clue").gen_clues.builtin_completion(),
         require("mini.clue").gen_clues.g(),
@@ -33,20 +33,20 @@ return {
         require("mini.clue").gen_clues.z(),
       },
       triggers = clue.triggers,
-    }
+    })
 
-    require("mini.diff").setup {
+    require("mini.diff").setup({
       view = {
         priority = 5,
         signs = { add = "┃", change = "┃", delete = "▁" },
         style = "sign",
       },
-    }
+    })
 
-    require("mini.files").setup {
+    require("mini.files").setup({
       mappings = { go_in_plus = "<cr>" },
       options = { permanent_delete = false, use_as_default_explorer = true },
       windows = { width_focus = 25, width_nofocus = 15 },
-    }
+    })
   end,
 }

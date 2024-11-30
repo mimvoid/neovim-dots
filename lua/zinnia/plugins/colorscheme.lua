@@ -7,8 +7,8 @@ return {
   init = function()
     local base16 = require("base16-colorscheme")
 
-    base16.with_config { telescope_borders = true }
-    base16.setup {
+    base16.with_config({ telescope_borders = true })
+    base16.setup({
       base00 = colors.base00,
       base01 = colors.base01,
       base02 = colors.base02,
@@ -25,7 +25,7 @@ return {
       base0D = colors.blue,
       base0E = colors.magenta,
       base0F = colors.base0F,
-    }
+    })
 
     -- Transparency
     -- background

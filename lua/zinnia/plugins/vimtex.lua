@@ -8,6 +8,7 @@ return {
       vimtex_enabled = true,
       vimtex_view_method = "zathura",
     }
+
     for k, v in pairs(globals) do
       vim.g[k] = v
     end

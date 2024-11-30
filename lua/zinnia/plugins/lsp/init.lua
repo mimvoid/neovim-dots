@@ -37,8 +37,8 @@ return {
     -- Use Nix or Meson as the package manager
     if utils.isNix then
       -- Use nixPatch if in Nix
-      for server_name,_ in pairs(servers) do
-        require('lspconfig')[server_name].setup({
+      for server_name, _ in pairs(servers) do
+        require("lspconfig")[server_name].setup({
           capabilities = capabilities,
           settings = servers[server_name],
           filetypes = (servers[server_name] or {}).filetypes,
@@ -47,21 +47,21 @@ return {
         })
       end
     else
-     -- Use mason outside Nix
-      require('mason').setup()
+      -- Use mason outside Nix
+      require("mason").setup()
 
       local ensure_installed = vim.tbl_keys(servers or {})
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-      require('mason-lspconfig').setup {
+      require("mason-lspconfig").setup({
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            require("lspconfig")[server_name].setup(server)
           end,
         },
-      }
+      })
     end
 
     --  This function gets run when an LSP attaches to a particular buffer.
@@ -128,7 +128,7 @@ return {
             group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
             callback = function(event2)
               vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds { group = "kickstart-lsp-highlight", buffer = event2.buf }
+              vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
             end,
           })
         end
@@ -139,7 +139,7 @@ return {
         -- This may be unwanted, since they displace some of your code
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
           map("<leader>th", function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
           end, "[T]oggle Inlay [H]ints")
         end
       end,
