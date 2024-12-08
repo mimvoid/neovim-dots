@@ -15,7 +15,7 @@ with pkgs;
   latex = texlab;
 
   lua = [
-    lua-language-server
+    # lua-language-server
     stylua
   ];
 
