@@ -9,10 +9,10 @@ vimUtils.buildVimPlugin {
   version = "unstable-2024-11-11";
 
   src = fetchFromGitHub {
-    owner = "R.nvim";
+    owner = "R-nvim";
     repo = "cmp-r";
-    rev = "a951034404c14051129b47e09cfed83f7a306898";
-    hash = "sha256-/2fGykyb8gmAdchCf96udZLuBxN8feWkQ1BlCl5LsIw=";
+    rev = "18b88eeb7e47996623b9aa0a763677ac00a16221";
+    hash = "sha256-3h+7q/x5xST50b9MdjR+9JULTwgn6kAyyrL5qhCtta0=";
   };
 
   meta = {
