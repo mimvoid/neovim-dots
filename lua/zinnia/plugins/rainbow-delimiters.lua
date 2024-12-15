@@ -1,4 +1,4 @@
-local colors = require("zinnia.colors")
+local c = require("zinnia.colors").hues
 
 return {
   "HiPhish/rainbow-delimiters.nvim",
@@ -6,13 +6,13 @@ return {
   config = function()
     -- Highlight groups
     local highlights = {
-      RainbowDelimiterRed = { fg = colors.red },
-      RainbowDelimiterYellow = { fg = colors.yellow },
-      RainbowDelimiterBlue = { fg = colors.blue },
-      RainbowDelimiterOrange = { fg = colors.yellow },
-      RainbowDelimiterGreen = { fg = colors.green },
-      RainbowDelimiterViolet = { fg = colors.magenta },
-      RainbowDelimiterCyan = { fg = colors.cyan },
+      RainbowDelimiterRed = { fg = c.red },
+      RainbowDelimiterYellow = { fg = c.yellow },
+      RainbowDelimiterBlue = { fg = c.blue },
+      RainbowDelimiterOrange = { fg = c.yellow },
+      RainbowDelimiterGreen = { fg = c.green },
+      RainbowDelimiterViolet = { fg = c.magenta },
+      RainbowDelimiterCyan = { fg = c.cyan },
     }
 
     for k, v in pairs(highlights) do

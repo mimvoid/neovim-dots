@@ -1,4 +1,4 @@
-local colors = require("zinnia.colors")
+local palette = require("zinnia.colors").base16
 
 return {
   "RRethy/base16-nvim",
@@ -8,24 +8,7 @@ return {
     local base16 = require("base16-colorscheme")
 
     base16.with_config({ telescope_borders = true })
-    base16.setup({
-      base00 = colors.base00,
-      base01 = colors.base01,
-      base02 = colors.base02,
-      base03 = colors.base03,
-      base04 = colors.base04,
-      base05 = colors.base05,
-      base06 = colors.base06,
-      base07 = colors.base07,
-      base08 = colors.red,
-      base09 = colors.magenta,
-      base0A = colors.yellow,
-      base0B = colors.green,
-      base0C = colors.cyan,
-      base0D = colors.blue,
-      base0E = colors.magenta,
-      base0F = colors.base0F,
-    })
+    base16.setup(palette)
 
     -- Transparency
     -- background
@@ -34,5 +17,8 @@ return {
 
     -- signcolumn
     vim.cmd.highlight({ "SignColumn", "guibg=NONE", "ctermbg=NONE" })
+
+    -- Window split borders
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = palette.base03 })
   end,
 }

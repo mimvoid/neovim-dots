@@ -1,4 +1,4 @@
-local colors = require("zinnia.colors")
+local c = require("zinnia.colors")
 
 return {
   "nvim-telescope/telescope.nvim",
@@ -12,13 +12,15 @@ return {
 
   config = function()
     -- Highlight groups
-    local groups = {
-      TelescopePreviewTitle = { bg = colors.base00, fg = colors.green },
-      TelescopePromptPrefix = { fg = colors.red },
-      TelescopePromptTitle = { bg = colors.base00, fg = colors.red },
+    local hi = {
+      TelescopeBorder = { fg = c.base16.base03 },
+      TelescopePromptBorder = { fg = c.base16.base04 },
+      TelescopePreviewTitle = { bg = c.base16.base00, fg = c.hues.green },
+      TelescopePromptPrefix = { fg = c.hues.red },
+      TelescopePromptTitle = { bg = c.base16.base00, fg = c.hues.red },
     }
 
-    for k, v in pairs(groups) do
+    for k, v in pairs(hi) do
       vim.api.nvim_set_hl(0, k, v)
     end
 

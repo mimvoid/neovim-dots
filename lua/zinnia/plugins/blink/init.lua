@@ -1,14 +1,14 @@
 local sources = require("zinnia.plugins.blink.sources")
 
 -- Set highlight groups
-local groups = {
+local hi = {
   BlinkCmpLabel = { link = "Normal" },
   BlinkCmpMenu = { link = "NormalFloat" },
   BlinkCmpMenuBorder = { link = "FloatBorder" },
   BlinkCmpMenuSelection = { link = "Visual" },
 }
 
-for k, v in pairs(groups) do
+for k, v in pairs(hi) do
   vim.api.nvim_set_hl(0, k, v)
 end
 
