@@ -70,7 +70,6 @@ return {
     m("n", "<leader>fd", tl.diagnostics, { desc = "[F]ind [D]iagnostics" })
     m("n", "<leader>fr", tl.resume, { desc = "[F]ind [R]esume" })
     m("n", "<leader>f.", tl.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
-    m("n", "<leader><leader>", tl.buffers, { desc = "[ ] Find existing buffers" })
 
     m("n", "<leader>f/", function()
       tl.live_grep({
