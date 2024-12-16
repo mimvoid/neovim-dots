@@ -2,7 +2,7 @@
 
 with pkgs.vimPlugins;
 [
-  base16-nvim
+  catppuccin-nvim
 
   lualine-nvim
   bufferline-nvim

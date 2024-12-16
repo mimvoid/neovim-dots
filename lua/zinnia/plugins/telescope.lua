@@ -11,20 +11,6 @@ return {
   },
 
   config = function()
-    -- Highlight groups
-    local hi = {
-      TelescopeBorder = { fg = c.base16.base03 },
-      TelescopePromptBorder = { fg = c.base16.base04 },
-      TelescopePreviewTitle = { bg = c.base16.base00, fg = c.hues.green },
-      TelescopePromptPrefix = { fg = c.hues.red },
-      TelescopePromptTitle = { bg = c.base16.base00, fg = c.hues.red },
-    }
-
-    for k, v in pairs(hi) do
-      vim.api.nvim_set_hl(0, k, v)
-    end
-
-    -- Setup
     require("telescope").setup({
       defaults = {
         dynamic_preview_title = true,

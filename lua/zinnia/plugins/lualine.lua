@@ -10,7 +10,7 @@ return {
       globalstatus = true,
       icons_enabled = true,
       section_separators = { left = "", right = "" },
-      theme = "base16",
+      theme = "catppuccin",
     },
     sections = {
       lualine_a = { "mode" },
