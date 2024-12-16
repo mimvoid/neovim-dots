@@ -3,22 +3,22 @@ return {
     fixme = {
       extmark_opts = { sign_text = "" },
       group = "MiniHipatternsFixme",
-      pattern = "FIXME:",
+      pattern = "%f[%w]()FIX()%f[%W]",
     },
     hack = {
       extmark_opts = { sign_text = "" },
       group = "MiniHipatternsHack",
-      pattern = "HACK:",
+      pattern = "%f[%w]()HACK()%f[%W]",
     },
     note = {
       extmark_opts = { sign_text = "" },
       group = "MiniHipatternsNote",
-      pattern = "NOTE:",
+      pattern = "%f[%w]()NOTE()%f[%W]",
     },
     todo = {
       extmark_opts = { sign_text = "" },
       group = "MiniHipatternsTodo",
-      pattern = "TODO:",
+      pattern = "%f[%w]()TODO()%f[%W]",
     },
   },
 }
