@@ -6,9 +6,11 @@ return {
   opts = {
     options = {
       always_show_bufferline = true,
-      diagnostics = "nvim_lsp",
-      hover = { enabled = true },
+      separator_style = "thin",
+      indicator = { style = "none" },
       tab_size = 16,
+
+      diagnostics = "nvim_lsp",
     },
   },
 }
