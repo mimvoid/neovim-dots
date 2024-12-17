@@ -20,6 +20,7 @@ with pkgs;
   ];
 
   markdown = marksman;
+  nim = nimlangserver;
   nix = nixd;
 
   python = [

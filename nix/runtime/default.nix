@@ -11,6 +11,7 @@ let
       lua
       latex
       markdown
+      nim
       python
     ]
   );

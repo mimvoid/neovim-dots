@@ -22,6 +22,7 @@ return {
       javascript = { "prettierd" },
       lua = { "stylua" },
       markdown = { "prettierd" },
+      nim = { "nimpretty" },
       scss = { "prettierd" },
       typescript = { "prettierd" },
     },

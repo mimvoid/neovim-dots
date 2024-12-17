@@ -32,5 +32,14 @@ return {
   --
   marksman = {},
   nixd = {},
+
+  nim_langserver = {
+    settings = {
+      nim = {
+        nimsuggestPath = "~/.nimble/bin/custom_lang_server_build"
+      },
+    },
+  },
+
   texlab = {},
 }
