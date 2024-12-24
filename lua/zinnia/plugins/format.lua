@@ -18,6 +18,7 @@ return {
     formatters_by_ft = {
       _ = { "trim_whitespace", "trim_newlines" },
       css = { "prettierd" },
+      go = { "gofmt" },
       html = { "prettierd" },
       javascript = { "prettierd" },
       lua = { "stylua" },

@@ -13,6 +13,7 @@ let
       markdown
       nim
       python
+      go
     ]
   );
 in

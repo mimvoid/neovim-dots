@@ -17,6 +17,7 @@ return {
   },
   ruff = {},
 
+  gopls = {},
 
   -- lua_ls = {
   --   settings = {
