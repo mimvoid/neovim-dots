@@ -21,11 +21,13 @@ return {
       go = { "gofmt" },
       html = { "prettierd" },
       javascript = { "prettierd" },
+      javascriptreact = { "prettierd" },
       lua = { "stylua" },
       markdown = { "prettierd" },
       nim = { "nimpretty" },
       scss = { "prettierd" },
       typescript = { "prettierd" },
+      typescriptreact = { "prettierd" },
     },
 
     notify_on_error = false,
