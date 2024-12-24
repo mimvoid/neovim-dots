@@ -43,4 +43,5 @@ return {
   },
 
   texlab = {},
+  ts_ls = {},
 }

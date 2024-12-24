@@ -14,6 +14,7 @@ let
       nim
       python
       go
+      typescript
     ]
   );
 in
