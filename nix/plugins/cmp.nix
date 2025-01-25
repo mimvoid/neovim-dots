@@ -1,11 +1,12 @@
-{ pkgs, voids, ... }:
+{ pkgs, ... }:
 
 with pkgs.vimPlugins;
 [
   blink-cmp
+  blink-compat
+
   luasnip
   friendly-snippets
 
-  voids.blink-compat
   # voids.cmp-r
 ]

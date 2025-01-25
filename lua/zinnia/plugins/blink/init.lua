@@ -8,31 +8,42 @@ return {
 
   dependencies = {
     "rafamadriz/friendly-snippets",
+    { "L3MON4D3/LuaSnip", version = "v2.*" },
   },
 
   ---@module "blink.cmp"
   ---@type blink.cmp.Config
   opts = {
-    keymap = { preset = "default" },
     sources = sources,
 
-    accept = { auto_brackets = { enabled = true } },
-    highlight = { use_nvim_cmp_as_default = true },
-    nerd_font_variant = "mono",
-    triggers = { signature_help = { enabled = true } },
+    keymap = { preset = "default" },
 
-    windows = {
-      autocomplete = {
-        border = vim.g.borderStyle,
+    appearance = {
+      use_nvim_cmp_as_default = true,
+      nerd_font_variant = "mono",
+    },
+
+    completion = {
+      accept = { auto_brackets = { enabled = true } },
+      draw = {
+        columns = {
+          { "kind_icon", "kind", gap = 1 },
+          { "label", "label_description" },
+        },
       },
+      menu = { border = vim.g.borderStyle },
       documentation = {
-        border = vim.g.borderStyle,
+        window = { border = vim.g.borderStyle },
+
         auto_show = true,
-      },
-      signature_help = {
-        border = vim.g.borderStyle,
+        auto_show_delay_ms = 200,
       },
     },
+
+    snippets = { preset = "luasnip" },
+
+    signature = { window = { border = vim.g.borderStyle } },
+    triggers = { signature_help = { enabled = true } },
   },
-  opts_extend = { "sources.completion.enabled_providers" },
+  opts_extend = { "sources.default" },
 }
