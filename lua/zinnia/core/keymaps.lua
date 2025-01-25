@@ -6,6 +6,8 @@ m("i", "<A-k>", "<Up>", { desc = "Move up" })
 m("i", "<A-h>", "<Left>", { desc = "Move left" })
 m("i", "<A-l>", "<Right>", { desc = "Move right" })
 
+m("i", "fj", "<esc>")
+
 -- Buffers
 m("n", "<leader>x", "<cmd>bp<bar>sp<bar>bn<bar>bd<cr>", { desc = "Close buffer" })
 m("n", "<Tab>", "<cmd>bn<cr>", { desc = "Next buffer" })
