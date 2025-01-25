@@ -6,7 +6,7 @@ let
 in
 [
   nix lua bash go rust nim
-  css scss html javascript typescript
+  css scss html gotmpl javascript typescript
   latex python r
   json toml yaml xml
   hyprlang
