@@ -7,5 +7,5 @@ with pkgs.vimPlugins;
   friendly-snippets
 
   voids.blink-compat
-  voids.cmp-r
+  # voids.cmp-r
 ]

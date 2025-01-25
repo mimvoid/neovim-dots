@@ -27,7 +27,7 @@ let
 
   lang-specific = [
     pkgs.vimPlugins.vimtex
-    voids.r-nvim
+    # voids.r-nvim
   ];
 in
 with pkgs.vimPlugins;
