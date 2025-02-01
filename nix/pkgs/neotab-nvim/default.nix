@@ -1,23 +1,23 @@
 {
-  # lib,
+  lib,
   fetchFromGitHub,
   vimUtils,
 }:
 
 vimUtils.buildVimPlugin {
   pname = "neotab.nvim";
-  version = "unstable-2024-11-11";
+  version = "unstable-2025-02-01";
 
   src = fetchFromGitHub {
     owner = "kawre";
     repo = "neotab.nvim";
-    rev = "6c6107dddaa051504e433608f59eca606138269b";
-    hash = "sha256-bSFKbjj8fJHdfBzYoQ9l3NU0GAYfdfCbESKbwdbLNSw=";
+    rev = "f6ed1ef49f32586f5db95edae5d6f264c8180d85";
+    hash = "sha256-5IJQwZxDGDMM6KBWKU/EZwa5wciHeTXOZgHPCRmlxJk=";
   };
 
   meta = {
     description = "Tabout plugin for Neovim";
     homepage = "https://github.com/kawre/neotab.nvim";
-    # license = lib.;
+    license = lib.licenses.mit;
   };
 }
