@@ -13,14 +13,6 @@ M.providers = {
   path = { opts = { trailing_slash = false } },
   lsp = { min_keyword_length = 1 },
 
-  snippets = {
-    score_offset = -3,
-    min_keyword_length = 2,
-    opts = { friendly_snippets = true },
-  },
-
-  buffer = { min_keyword_length = 3 },
-
   -- cmp_r = {
   --   name = 'cmp_r',
   --   module = 'blink.compat.source',

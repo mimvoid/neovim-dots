@@ -3,7 +3,6 @@ local sources = require("zinnia.plugins.blink.sources")
 return {
   "Saghen/blink.cmp",
   version = "v0.*",
-
   lazy = false,
 
   dependencies = {
@@ -18,23 +17,21 @@ return {
 
     keymap = { preset = "default" },
 
-    appearance = {
-      use_nvim_cmp_as_default = true,
-      nerd_font_variant = "mono",
-    },
+    appearance = { nerd_font_variant = "mono" },
 
     completion = {
-      accept = { auto_brackets = { enabled = true } },
-      draw = {
-        columns = {
-          { "kind_icon", "kind", gap = 1 },
-          { "label", "label_description" },
+      menu = {
+        border = vim.g.borderStyle,
+        draw = {
+          columns = {
+            { "kind_icon" },
+            { "label", "label_description" },
+          },
+          treesitter = { "lsp" },
         },
       },
-      menu = { border = vim.g.borderStyle },
       documentation = {
         window = { border = vim.g.borderStyle },
-
         auto_show = true,
         auto_show_delay_ms = 200,
       },
@@ -42,8 +39,10 @@ return {
 
     snippets = { preset = "luasnip" },
 
-    signature = { window = { border = vim.g.borderStyle } },
-    triggers = { signature_help = { enabled = true } },
+    signature = {
+      enabled = true,
+      window = { border = vim.g.borderStyle }
+    },
   },
   opts_extend = { "sources.default" },
 }

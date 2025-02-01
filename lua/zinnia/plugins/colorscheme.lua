@@ -18,7 +18,6 @@ return {
       -- plugins
       default_integrations = false,
       integrations = {
-        blink_cmp = true,
         treesitter = true,
         mini = { enabled = true },
         markdown = true,
