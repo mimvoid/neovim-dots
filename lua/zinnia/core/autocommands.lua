@@ -20,3 +20,14 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.opt.relativenumber = false
   end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  desc = "Detect go templates in html",
+  pattern = "*.html",
+  group = vim.api.nvim_create_augroup("detect-gotmpl", { clear = true }),
+  callback = function()
+    if vim.fn.search("{{") ~= 0 then
+      vim.opt.filetype = "gotmpl"
+    end
+  end,
+})
