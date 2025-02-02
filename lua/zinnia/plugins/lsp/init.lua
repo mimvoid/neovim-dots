@@ -72,21 +72,6 @@ return {
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
         end
 
-        local tele = require("telescope.builtin")
-
-        -- Jump to the definition of the word under your cursor.
-        --  To jump back, press <C-t>.
-        map("gd", tele.lsp_definitions, "[G]oto [D]efinition")
-        map("gr", tele.lsp_references, "[G]oto [R]eferences")
-        map("gI", tele.lsp_implementations, "[G]oto [I]mplementation")
-        map("<leader>D", tele.lsp_type_definitions, "Type [D]efinition")
-
-        -- Fuzzy find all symbols in current document (variables, functions, types, etc.)
-        map("<leader>ds", tele.lsp_document_symbols, "[D]ocument [S]ymbols")
-
-        -- Fuzzy find all the symbols in current workspace (entire project)
-        map("<leader>ws", tele.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-
         -- Rename the variable under your cursor.
         map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 

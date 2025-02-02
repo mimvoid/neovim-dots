@@ -36,7 +36,6 @@ with pkgs.vimPlugins;
 
   nvim-lspconfig
   mini-nvim
-  telescope-nvim
   plenary-nvim
 ]
 ++ [ treesitter ]
