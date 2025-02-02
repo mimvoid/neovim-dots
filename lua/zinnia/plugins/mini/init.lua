@@ -70,5 +70,17 @@ return {
         return MiniTabline.default_format(buf_id, label) .. suffix
       end,
     })
+
+    vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = c.base16.base02 })
+    require("mini.indentscope").setup({
+      draw = {
+        delay = 50,
+        animation = require("mini.indentscope").gen_animation.none()
+      },
+      options = {
+        n_lines = 500,
+        try_as_border = true
+      },
+    })
   end,
 }
