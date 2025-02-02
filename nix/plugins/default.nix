@@ -37,6 +37,7 @@ with pkgs.vimPlugins;
   nvim-lspconfig
   mini-nvim
   plenary-nvim
+  snacks-nvim
 ]
 ++ [ treesitter ]
 ++ cmp
