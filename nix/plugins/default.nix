@@ -16,7 +16,6 @@ let
   marks = [
     pkgs.vimPlugins.marks-nvim
     voids.nvim-project-marks
-    voids.vessel
   ];
 
   typing = with pkgs.vimPlugins; [

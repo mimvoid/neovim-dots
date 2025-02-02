@@ -39,6 +39,22 @@ layouts.vertical = {
   },
 }
 
+layouts.vertical_min_input = {
+  layout = {
+    backdrop = false,
+    width = 0.5,
+    min_width = 80,
+    height = 0.8,
+    min_height = 25,
+    box = "vertical",
+    border = "none",
+    title_pos = "center",
+    { win = "input", height = 1, border = "none" },
+    { win = "list", border = vim.g.borderStyle, title = "{title} {live} {flags}" },
+    { win = "preview", title = "{preview}", border = vim.g.borderStyle, height = 0.5 },
+  },
+}
+
 layouts.select = {
   preview = false,
   layout = {
@@ -69,6 +85,12 @@ return {
 
   sources = {
     buffers = {
+      -- start in normal mode
+      layout = layouts.vertical_min_input,
+      on_show = function()
+        vim.cmd.stopinsert()
+      end,
+
       focus = "list",
       nofile = true,
       layout = layouts.select,
@@ -84,22 +106,33 @@ return {
     },
     icons = { layout = layouts.select },
     jumps = {
+      layout = layouts.vertical_min_input,
+      on_show = function()
+        vim.cmd.stopinsert()
+      end,
+
       focus = "list",
-      layout = layouts.vertical,
       formatters = { file = { filename_first = true } },
     },
     marks = {
+      layout = layouts.vertical_min_input,
+      on_show = function()
+        vim.cmd.stopinsert()
+      end,
+
       focus = "list",
-      layout = layouts.vertical,
       matcher = { sort_empty = true },
       formatters = { file = { filename_first = true } },
-      -- HACK: only show alphabetic marks
-      pattern = "!0 !1 !2 !3 !4 !5 !6 !7 !8 !9 !^' !\" ![ !] !< !> !^. !^^",
-      -- filter = {
-      --   filter = function(item)
-      --     return string.match(item.text, "%a") ~= nil
-      --   end,
-      -- },
+
+      transform = function(item)
+        if item.text:match("^[a-z]") then
+          item.score_add = 1000
+        end
+        if item.text:match("^[A-Z]") then
+          item.score_add = 500
+        end
+        return item
+      end,
     },
   },
 }
