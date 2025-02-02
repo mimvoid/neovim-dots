@@ -13,7 +13,6 @@ return {
   config = function()
     require("telescope").setup({
       defaults = {
-        dynamic_preview_title = true,
         file_ignore_patterns = {
           "^.git/",
           "^.mypy_cache/",
@@ -23,34 +22,33 @@ return {
           "%.ipynb",
           ".sass-cache/*",
         },
+
+        layout_strategy = "flex",
         layout_config = {
-          height = 0.85,
-          horizontal = { preview_width = 0.4, prompt_position = "bottom" },
+          height = 0.8,
           preview_cutoff = 1,
           width = 0.8,
+
+          flex = { horizontal = { preview_width = 0.35 } },
         },
+        previewer = true,
+
         mappings = {
           i = {
             ["<A-j>"] = require("telescope.actions").move_selection_next,
             ["<A-k>"] = require("telescope.actions").move_selection_previous,
           },
         },
+
         path_display = { "truncate" },
-        previewer = true,
+
+        dynamic_preview_title = true,
         prompt_title = "",
         results_title = "",
-        vimgrep_arguments = {
-          "rg",
-          "--color=never",
-          "--no-heading",
-          "--with-filename",
-          "--line-number",
-          "--column",
-          "--smart-case",
-          "--hidden",
-          "--glob",
-          "!**/.git/*",
-        },
+      },
+      pickers = {
+        diagnostics = { previewer = false },
+        builtin = { previewer = false },
       },
     })
 
