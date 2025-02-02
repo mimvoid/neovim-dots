@@ -64,63 +64,56 @@ return {
       })
     end
 
-    --  This function gets run when an LSP attaches to a particular buffer.
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
-        -- In this case, we create a function that lets us more easily define mappings specific
-        -- for LSP related items. It sets the mode, buffer and description for us each time.
         local map = function(keys, func, desc, mode)
           mode = mode or "n"
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
         end
 
-        local telescope = require("telescope.builtin")
+        local tele = require("telescope.builtin")
 
         -- Jump to the definition of the word under your cursor.
         --  To jump back, press <C-t>.
-        map("gd", telescope.lsp_definitions, "[G]oto [D]efinition")
-        map("gr", telescope.lsp_references, "[G]oto [R]eferences")
-        map("gI", telescope.lsp_implementations, "[G]oto [I]mplementation")
-        map("<leader>D", telescope.lsp_type_definitions, "Type [D]efinition")
+        map("gd", tele.lsp_definitions, "[G]oto [D]efinition")
+        map("gr", tele.lsp_references, "[G]oto [R]eferences")
+        map("gI", tele.lsp_implementations, "[G]oto [I]mplementation")
+        map("<leader>D", tele.lsp_type_definitions, "Type [D]efinition")
 
-        -- Fuzzy find all the symbols in your current document.
-        --  Symbols are things like variables, functions, types, etc.
-        map("<leader>ds", telescope.lsp_document_symbols, "[D]ocument [S]ymbols")
+        -- Fuzzy find all symbols in current document (variables, functions, types, etc.)
+        map("<leader>ds", tele.lsp_document_symbols, "[D]ocument [S]ymbols")
 
-        -- Fuzzy find all the symbols in your current workspace.
-        --  Similar to document symbols, except searches over your entire project.
-        map("<leader>ws", telescope.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+        -- Fuzzy find all the symbols in current workspace (entire project)
+        map("<leader>ws", tele.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
         -- Rename the variable under your cursor.
-        --  Most Language Servers support renaming across files, etc.
         map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
         map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 
-        -- WARN: This is not Goto Definition, this is Goto Declaration.
         --  For example, in C this would take you to the header.
         map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
         --    See `:help CursorHold` for information about when this is executed
-        --
-        -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
+
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-          local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+          local hl_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+
           vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
             buffer = event.buf,
-            group = highlight_augroup,
+            group = hl_augroup,
             callback = vim.lsp.buf.document_highlight,
           })
 
           vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
             buffer = event.buf,
-            group = highlight_augroup,
+            group = hl_augroup,
             callback = vim.lsp.buf.clear_references,
           })
 
@@ -133,10 +126,7 @@ return {
           })
         end
 
-        -- The following code creates a keymap to toggle inlay hints in your
-        -- code, if the language server you are using supports them
-        --
-        -- This may be unwanted, since they displace some of your code
+        -- Toggle inlay hints if the lsp supports them
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
           map("<leader>th", function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))

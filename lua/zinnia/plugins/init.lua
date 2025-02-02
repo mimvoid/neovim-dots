@@ -1,6 +1,6 @@
 return {
   {
-    "saghen/blink.compat",
+    "Saghen/blink.compat",
     opts = { impersonate_nvim_cmp = true },
   },
 
