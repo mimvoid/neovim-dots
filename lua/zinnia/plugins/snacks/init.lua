@@ -42,6 +42,7 @@ return {
     { "<leader>fi", function() Snacks.picker.icons() end, desc = "Find icons" },
     { "<leader>fe", function() Snacks.picker.registers() end, desc = "Find registers" },
     { "<leader>fm", function() Snacks.picker.marks() end, desc = "Find marks" },
+    { "<leader>fj", function() Snacks.picker.jumps() end, desc = "Find jumps" },
     { "<leader>fs", function() Snacks.picker.pickers() end, desc = "Find Snacks pickers" },
     { "<leader>fn", function()
       Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
