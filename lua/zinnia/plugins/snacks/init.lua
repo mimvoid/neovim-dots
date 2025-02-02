@@ -1,4 +1,5 @@
 local picker = require("zinnia.plugins.snacks.picker")
+picker.layouts = require("zinnia.plugins.snacks.picker-layouts")
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "MiniFilesActionRename",
@@ -19,6 +20,7 @@ return {
     },
 
     picker = picker,
+
     input = { enabled = true },
     lazygit = { enabled = true },
     rename = { enabled = true },
