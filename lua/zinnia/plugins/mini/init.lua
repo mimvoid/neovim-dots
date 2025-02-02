@@ -2,6 +2,8 @@ local starter = require("zinnia.plugins.mini.mini-starter")
 local hipatterns = require("zinnia.plugins.mini.mini-hipatterns")
 local clue = require("zinnia.plugins.mini.mini-clue")
 
+local c = require("zinnia.colors")
+
 return {
   "echasnovski/mini.nvim",
   lazy = false,
@@ -47,6 +49,26 @@ return {
       mappings = { go_in_plus = "<cr>" },
       options = { permanent_delete = false, use_as_default_explorer = true },
       windows = { width_focus = 25, width_nofocus = 15 },
+    })
+
+    require("mini.tabline").setup({
+      format = function(buf_id, label)
+        local faded = { fg = c.base16.base03 }
+        local hl = {
+          Current = { fg = c.hues.cyan, bold = true },
+          ModifiedCurrent = { fg = c.hues.red, bold = true },
+          Visible = faded,
+          ModifiedVisible = faded,
+          Hidden = faded,
+          ModifiedHidden = faded,
+        }
+        for k, v in pairs(hl) do
+          vim.api.nvim_set_hl(0, "MiniTabline" .. k, v)
+        end
+
+        local suffix = vim.bo[buf_id].modified and "● " or ""
+        return MiniTabline.default_format(buf_id, label) .. suffix
+      end,
     })
   end,
 }
