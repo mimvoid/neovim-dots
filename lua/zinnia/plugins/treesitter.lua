@@ -2,13 +2,20 @@ local utils = require("zinnia.utils")
 
 return {
   "nvim-treesitter/nvim-treesitter",
+  dependencies = { "RRethy/nvim-treesitter-endwise" },
+
   build = utils.set(":TSUpdate"),
 
   event = { "BufReadPost", "BufNewFile", "BufWritePre" },
   main = "nvim-treesitter.configs",
 
   opts = {
+    -- For nvim-treesitter-endwise
+    endwise = { enable = true },
+
     auto_install = false,
+
+    matchup = { enable = true },
 
     highlight = {
       enable = true,

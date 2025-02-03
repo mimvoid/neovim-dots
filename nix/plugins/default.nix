@@ -20,6 +20,9 @@ let
 
   typing = with pkgs.vimPlugins; [
     ultimate-autopair-nvim
+    nvim-ts-autotag
+    nvim-treesitter-endwise
+    vim-matchup
     voids.neotab
     fcitx-vim
   ];
