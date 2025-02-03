@@ -20,6 +20,7 @@ return {
     require("mini.ai").setup({ n_lines = 500 })
     require("mini.move").setup()
     require("mini.surround").setup()
+    require("mini.splitjoin").setup()
 
     -- Use the tables from the other files
     require("mini.starter").setup(starter)
