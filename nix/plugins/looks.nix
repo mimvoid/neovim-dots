@@ -6,7 +6,9 @@ with pkgs.vimPlugins;
 
   lualine-nvim
   alpha-nvim
+
   nvim-web-devicons
+  tiny-devicons-auto-colors-nvim
 
   rainbow-delimiters-nvim
   nvim-highlight-colors
