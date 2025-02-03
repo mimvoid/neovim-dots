@@ -1,3 +1,5 @@
+local prettier = { "prettierd", "prettier", stop_after_first = true }
+
 return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
@@ -9,29 +11,40 @@ return {
       function()
         require("conform").format({ async = true, lsp_format = "fallback" })
       end,
-      mode = "n",
+      mode = "",
       desc = "[F]ormat buffer",
     },
   },
 
   opts = {
     formatters_by_ft = {
-      _ = { "trim_whitespace", "trim_newlines" },
-      css = { "prettierd" },
+      ["_"] = { "trim_whitespace", "trim_newlines" },
+
+      css = prettier,
+      javascript = prettier,
+      javascriptreact = prettier,
+      typescript = prettier,
+      typescriptreact = prettier,
+      json = prettier,
+
+      scss = prettier,
+      html = prettier,
+      markdown = prettier,
+      yaml = prettier,
+
       go = { "gofmt" },
-      html = { "prettierd" },
-      javascript = { "prettierd" },
-      javascriptreact = { "prettierd" },
-      json = { "prettierd" },
+      latex = { "latexindent" },
       lua = { "stylua" },
-      markdown = { "prettierd" },
       nim = { "nimpretty" },
-      scss = { "prettierd" },
-      typescript = { "prettierd" },
-      typescriptreact = { "prettierd" },
-      yaml = { "prettierd" },
+      ocaml = { "ocamlformat" },
     },
 
     notify_on_error = false,
+  },
+
+  formatters = {
+    biome = {
+      args = { "format", "--indent-style=space", "--stdin-file-path", "$FILENAME" },
+    },
   },
 }
