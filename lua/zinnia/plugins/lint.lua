@@ -15,6 +15,7 @@ return {
       bash = { "bash" },
       latex = { "chktex" },
       lua = { "selene" },
+      markdown = { "markdownlint-cli2" },
       nix = { "statix" },
       zsh = { "zsh" },
     }

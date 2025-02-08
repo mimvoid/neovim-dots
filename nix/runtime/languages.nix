@@ -22,7 +22,11 @@ with pkgs;
     selene
   ];
 
-  markdown = marksman;
+  markdown = [
+    # marksman
+    markdownlint-cli2
+  ];
+
   nim = nimlangserver;
 
   nix = [

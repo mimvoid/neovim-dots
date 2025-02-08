@@ -31,7 +31,7 @@ return {
   --   },
   -- },
 
-  marksman = {},
+  -- marksman = {},
   nixd = {},
 
   nim_langserver = {
