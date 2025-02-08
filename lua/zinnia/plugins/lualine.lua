@@ -41,24 +41,18 @@ return {
         {
           -- Lists the LSPs in the current buffer filetype
           function()
-            local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-            local clients = vim.lsp.get_active_clients()
+            local clients = vim.lsp.get_clients({ bufnr = 0 })
 
-            if next(clients) == nil then
+            if #clients == 0 then
               return ""
             end
 
-            for _, client in ipairs(clients) do
-              local filetypes = client.config.filetypes
-
-              -- list clients
-              local ft_clients = {}
-              if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                table.insert(ft_clients, client.name)
-              end
-
-              return table.concat(ft_clients, ", ")
+            local ft_clients = {}
+            for _, client in pairs(clients) do
+              table.insert(ft_clients, client.name)
             end
+
+            return table.concat(ft_clients, ", ")
           end,
         },
       },
