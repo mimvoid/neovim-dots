@@ -1,10 +1,12 @@
 { pkgs, ... }:
 
-# A set of lsps and formatters sorted by language
+# A set of lsps, formatters, and linters grouped by language
 
 with pkgs;
 {
   bash = bash-language-server;
+
+  css = stylelint;
 
   go = [
     gopls
@@ -17,17 +19,26 @@ with pkgs;
   lua = [
     # lua-language-server
     stylua
+    selene
   ];
 
   markdown = marksman;
   nim = nimlangserver;
-  nix = nixd;
+
+  nix = [
+    nixd
+    statix
+  ];
 
   python = [
     basedpyright
     ruff
   ];
 
-  rust = rust-analyzer;
+  rust = [
+    rust-analyzer
+    clippy
+  ];
+
   typescript = typescript-language-server;
 }

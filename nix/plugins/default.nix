@@ -37,6 +37,8 @@ with pkgs.vimPlugins;
   lazy-nvim
 
   nvim-lspconfig
+  nvim-lint
+
   mini-nvim
   plenary-nvim
   snacks-nvim
