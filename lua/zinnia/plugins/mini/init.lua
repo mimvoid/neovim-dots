@@ -21,6 +21,7 @@ return {
     require("mini.move").setup()
     require("mini.surround").setup()
     require("mini.splitjoin").setup()
+    require("mini.jump2d").setup()
 
     -- Use the tables from the other files
     require("mini.starter").setup(starter)
