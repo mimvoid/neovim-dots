@@ -5,7 +5,7 @@ let
   required_langs = [ c lua vim vimdoc query markdown markdown_inline ];
 in
 [
-  nix lua bash go rust nim
+  nix lua bash go rust nim java
   css scss html gotmpl javascript typescript
   latex python r
   json toml yaml xml

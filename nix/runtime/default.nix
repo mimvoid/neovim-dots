@@ -15,6 +15,7 @@ let
       python
       go
       typescript
+      java
     ]
   );
 in

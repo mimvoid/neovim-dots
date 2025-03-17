@@ -29,6 +29,7 @@ let
 
   lang-specific = [
     pkgs.vimPlugins.vimtex
+    pkgs.vimPlugins.nvim-jdtls
     # voids.r-nvim
   ];
 in

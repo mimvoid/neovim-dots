@@ -14,6 +14,8 @@ with pkgs;
     go-tools
   ];
 
+  java = jdt-language-server;
+
   latex = texlab;
 
   lua = [
