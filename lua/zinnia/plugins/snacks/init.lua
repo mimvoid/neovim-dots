@@ -1,13 +1,6 @@
 local picker = require("zinnia.plugins.snacks.picker")
 picker.layouts = require("zinnia.plugins.snacks.picker-layouts")
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "MiniFilesActionRename",
-  callback = function(event)
-    Snacks.rename.on_rename_file(event.data.from, event.data.to)
-  end,
-})
-
 return {
   "folke/snacks.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -25,6 +18,15 @@ return {
     lazygit = { enabled = true },
     rename = { enabled = true },
   },
+
+  config = function()
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesActionRename",
+      callback = function(event)
+        Snacks.rename.on_rename_file(event.data.from, event.data.to)
+      end,
+    })
+  end,
 
   keys = {
     { "<leader>gl", function() Snacks.lazygit.open() end, desc = "Open Lazygit" },

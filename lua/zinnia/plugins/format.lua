@@ -1,5 +1,3 @@
-local prettier = { "prettierd", "prettier", stop_after_first = true }
-
 return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
@@ -16,31 +14,35 @@ return {
     },
   },
 
-  opts = {
-    formatters_by_ft = {
-      ["_"] = { "trim_whitespace", "trim_newlines" },
+  opts = function()
+    local prettier = { "prettierd", "prettier", stop_after_first = true }
 
-      css = prettier,
-      javascript = prettier,
-      javascriptreact = prettier,
-      typescript = prettier,
-      typescriptreact = prettier,
-      json = prettier,
+    return {
+      formatters_by_ft = {
+        ["_"] = { "trim_whitespace", "trim_newlines" },
 
-      scss = prettier,
-      html = prettier,
-      markdown = prettier,
-      yaml = prettier,
+        css = prettier,
+        javascript = prettier,
+        javascriptreact = prettier,
+        typescript = prettier,
+        typescriptreact = prettier,
+        json = prettier,
 
-      go = { "gofmt" },
-      latex = { "latexindent" },
-      lua = { "stylua" },
-      nim = { "nimpretty" },
-      ocaml = { "ocamlformat" },
-    },
+        scss = prettier,
+        html = prettier,
+        markdown = prettier,
+        yaml = prettier,
 
-    notify_on_error = false,
-  },
+        go = { "gofmt" },
+        latex = { "latexindent" },
+        lua = { "stylua" },
+        nim = { "nimpretty" },
+        ocaml = { "ocamlformat" },
+      },
+
+      notify_on_error = false,
+    }
+  end,
 
   formatters = {
     biome = {
