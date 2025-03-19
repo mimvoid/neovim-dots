@@ -6,4 +6,8 @@ return {
 
   "lilydjwg/fcitx.vim",
   "HiPhish/rainbow-delimiters.nvim",
+  {
+    dir = "/home/zinnia/Projects/mdopen.nvim",
+    opts = {},
+  },
 }
