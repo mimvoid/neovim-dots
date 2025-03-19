@@ -1,6 +1,6 @@
-local starter = require("zinnia.plugins.mini.mini-starter")
-local hipatterns = require("zinnia.plugins.mini.mini-hipatterns")
-local clue = require("zinnia.plugins.mini.mini-clue")
+local starter_opts = require("zinnia.plugins.mini.mini-starter")
+local hipatterns_opts = require("zinnia.plugins.mini.mini-hipatterns")
+local clue_opts = require("zinnia.plugins.mini.mini-clue")
 
 local c = require("zinnia.colors")
 
@@ -11,7 +11,9 @@ return {
   keys = {
     {
       "<leader>e",
-      "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0), false)<cr>",
+      function()
+        MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+      end,
       desc = "Open mini.files",
     },
   },
@@ -24,20 +26,9 @@ return {
     require("mini.jump2d").setup()
 
     -- Use the tables from the other files
-    require("mini.starter").setup(starter)
-    require("mini.hipatterns").setup(hipatterns)
-
-    require("mini.clue").setup({
-      clues = {
-        require("mini.clue").gen_clues.builtin_completion(),
-        require("mini.clue").gen_clues.g(),
-        require("mini.clue").gen_clues.marks(),
-        require("mini.clue").gen_clues.registers(),
-        require("mini.clue").gen_clues.windows(),
-        require("mini.clue").gen_clues.z(),
-      },
-      triggers = clue.triggers,
-    })
+    require("mini.starter").setup(starter_opts)
+    require("mini.hipatterns").setup(hipatterns_opts)
+    require("mini.clue").setup(clue_opts())
 
     require("mini.diff").setup({
       view = {
@@ -77,11 +68,11 @@ return {
     require("mini.indentscope").setup({
       draw = {
         delay = 50,
-        animation = require("mini.indentscope").gen_animation.none()
+        animation = require("mini.indentscope").gen_animation.none(),
       },
       options = {
         n_lines = 500,
-        try_as_border = true
+        try_as_border = true,
       },
     })
   end,

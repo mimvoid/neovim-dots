@@ -1,33 +1,45 @@
-return {
-  triggers = {
-    -- Leader triggers
-    { mode = "n", keys = "<Leader>" },
-    { mode = "x", keys = "<Leader>" },
+return function()
+  local clue = require("mini.clue")
 
-    -- Built-in completion
-    { mode = "i", keys = "<C-x>" },
+  return {
+    clues = {
+      clue.gen_clues.builtin_completion(),
+      clue.gen_clues.g(),
+      clue.gen_clues.marks(),
+      clue.gen_clues.registers(),
+      clue.gen_clues.windows(),
+      clue.gen_clues.z(),
+    },
+    triggers = {
+      -- Leader triggers
+      { mode = "n", keys = "<Leader>" },
+      { mode = "x", keys = "<Leader>" },
 
-    -- `g` key
-    { mode = "n", keys = "g" },
-    { mode = "x", keys = "g" },
+      -- Built-in completion
+      { mode = "i", keys = "<C-x>" },
 
-    -- Marks
-    { mode = "n", keys = "'" },
-    { mode = "n", keys = "`" },
-    { mode = "x", keys = "'" },
-    { mode = "x", keys = "`" },
+      -- `g` key
+      { mode = "n", keys = "g" },
+      { mode = "x", keys = "g" },
 
-    -- Registers
-    { mode = "n", keys = '"' },
-    { mode = "x", keys = '"' },
-    { mode = "i", keys = "<C-r>" },
-    { mode = "c", keys = "<C-r>" },
+      -- Marks
+      { mode = "n", keys = "'" },
+      { mode = "n", keys = "`" },
+      { mode = "x", keys = "'" },
+      { mode = "x", keys = "`" },
 
-    -- Window commands
-    { mode = "n", keys = "<C-w>" },
+      -- Registers
+      { mode = "n", keys = '"' },
+      { mode = "x", keys = '"' },
+      { mode = "i", keys = "<C-r>" },
+      { mode = "c", keys = "<C-r>" },
 
-    -- `z` key
-    { mode = "n", keys = "z" },
-    { mode = "x", keys = "z" },
-  },
-}
+      -- Window commands
+      { mode = "n", keys = "<C-w>" },
+
+      -- `z` key
+      { mode = "n", keys = "z" },
+      { mode = "x", keys = "z" },
+    },
+  }
+end
