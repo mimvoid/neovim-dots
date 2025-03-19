@@ -12,7 +12,11 @@ return {
     {
       "<leader>e",
       function()
-        MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+        if vim.bo.buftype == "" then
+          MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+        else
+          MiniFiles.open()
+        end
       end,
       desc = "Open mini.files",
     },
