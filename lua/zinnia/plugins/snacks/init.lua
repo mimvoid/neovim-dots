@@ -28,34 +28,69 @@ return {
     })
   end,
 
-  keys = {
-    { "<leader>gl", function() Snacks.lazygit.open() end, desc = "Open Lazygit" },
-    { "<leader>go", function() Snacks.lazygit.log() end, desc = "Open Git log" },
+  keys = function()
+    function pick(key, cmd, desc)
+      if desc == nil then
+        desc = "Find " .. cmd
+      end
 
-    { "<leader><leader>", function() Snacks.picker.buffers() end, desc = "Buffers" },
-    { "<leader>m", function()
-      -- HACK: only show alphabetic marks
-      Snacks.picker.marks({ pattern = "!0 !1 !2 !3 !4 !5 !6 !7 !8 !9 !^' !\" ![ !] !< !> !^. !^^" })
-    end, desc = "Find marks" },
-    { "<leader>M", function() Snacks.picker.marks() end, desc = "Find all marks" },
+      return {
+        "<leader>" .. key,
+        function()
+          Snacks.picker[cmd]()
+        end,
+        desc = desc,
+      }
+    end
 
-    { "<leader>/", function() Snacks.picker.grep() end, desc = "Find by grep" },
-    { "<leader>:", function() Snacks.picker.command_history() end, desc = "Search command history" },
-    { "<leader>z", function() Snacks.picker.zoxide() end, desc = "Find by zoxide" },
+    return {
+      {
+        "<leader>gl",
+        function()
+          Snacks.lazygit.open()
+        end,
+        desc = "Open Lazygit",
+      },
+      {
+        "<leader>go",
+        function()
+          Snacks.lazygit.log()
+        end,
+        desc = "Open Git log",
+      },
 
-    { "<leader>fh", function() Snacks.picker.help() end, desc = "Find help" },
-    { "<leader>fk", function() Snacks.picker.keymaps() end, desc = "Find keymaps" },
-    { "<leader>ff", function() Snacks.picker.files() end, desc = "Find files" },
-    { "<leader>fr", function() Snacks.picker.recent() end, desc = "Find recent files" },
-    { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Find current word" },
-    { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Find diagnostics" },
-    { "<leader>fp", function() Snacks.picker.projects() end, desc = "Find projects" },
-    { "<leader>fi", function() Snacks.picker.icons() end, desc = "Find icons" },
-    { "<leader>fe", function() Snacks.picker.registers() end, desc = "Find registers" },
-    { "<leader>fj", function() Snacks.picker.jumps() end, desc = "Find jumps" },
-    { "<leader>fs", function() Snacks.picker.pickers() end, desc = "Find Snacks pickers" },
-    { "<leader>fn", function()
-      Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
-    end, desc = "Find config file" },
-  },
+      pick("<leader>", "buffers", "Buffers"),
+      {
+        "<leader>m",
+        function()
+          -- HACK: only show alphabetic marks
+          Snacks.picker.marks({ pattern = "!0 !1 !2 !3 !4 !5 !6 !7 !8 !9 !^' !\" ![ !] !< !> !^. !^^" })
+        end,
+        desc = "Find marks",
+      },
+      pick("M", "marks", "Find all marks"),
+
+      pick("/", "grep", "Find by grep"),
+      pick(":", "command_history", "Search command history"),
+      pick("z", "zoxide", "Find by zoxide"),
+
+      pick("fh", "help"),
+      pick("fk", "keymaps"),
+      pick("ff", "files"),
+      pick("fr", "recent", "Find recent files"),
+      pick("fw", "grep_word", "Find current word"),
+      pick("fd", "diagnostics"),
+      pick("fi", "icons"),
+      pick("fe", "registers"),
+      pick("fj", "jumps"),
+      pick("fs", "pickers", "Find Snacks pickers"),
+      {
+        "<leader>fn",
+        function()
+          Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+        end,
+        desc = "Find config file",
+      },
+    }
+  end,
 }

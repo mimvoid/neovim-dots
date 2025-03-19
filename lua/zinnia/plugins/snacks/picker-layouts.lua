@@ -1,4 +1,4 @@
-local preview = function(opts)
+function preview(opts)
   local orig = { win = "preview", title = "{preview}", border = vim.g.borderStyle }
   return vim.tbl_extend("force", orig, opts)
 end
@@ -20,7 +20,7 @@ return {
       min_width = 100,
       height = 0.8,
       input_list,
-      preview({ width = 0.4 })
+      preview({ width = 0.4 }),
     },
   },
 
@@ -68,7 +68,7 @@ return {
       title = info_title,
       { win = "input", height = 1, border = "bottom" },
       { win = "list", border = "none" },
-      preview({ height = 0.4, border = "top" })
+      preview({ height = 0.4, border = "top" }),
     },
   },
 }
