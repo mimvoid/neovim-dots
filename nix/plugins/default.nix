@@ -43,6 +43,7 @@ with pkgs.vimPlugins;
   mini-nvim
   plenary-nvim
   snacks-nvim
+  guess-indent-nvim
 ]
 ++ [ treesitter ]
 ++ cmp
