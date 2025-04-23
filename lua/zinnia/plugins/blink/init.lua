@@ -2,7 +2,7 @@ local sources = require("zinnia.plugins.blink.sources")
 
 return {
   "Saghen/blink.cmp",
-  version = "v0.*",
+  version = "1.*",
   lazy = false,
 
   dependencies = {
