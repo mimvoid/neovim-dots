@@ -64,6 +64,8 @@ local opts = {
 
   -- Preview substitutions live, as you type!
   inccommand = "split",
+
+  winborder = "rounded", -- panel and window borders
 }
 
 for k, v in pairs(opts) do
