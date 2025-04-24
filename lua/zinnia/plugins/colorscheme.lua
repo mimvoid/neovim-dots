@@ -23,11 +23,13 @@ return {
       -- plugins
       default_integrations = false,
       integrations = {
-        treesitter = true,
+        blink_cmp = true,
         mini = { enabled = true },
         markdown = true,
         rainbow_delimiters = true,
+        snacks = { enabled = true },
         telescope = { enabled = true },
+        treesitter = true,
 
         native_lsp = {
           enabled = true,
