@@ -25,6 +25,23 @@ m("n", "<C-k>", "<C-w><C-k>", { desc = "Focus upper window" })
 -- Diagnostic keymaps
 m("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
+m("n", "<leader>kl", function()
+  vim.diagnostic.config({
+    virtual_lines = { current_line = true },
+    virtual_text = false,
+  })
+
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    group = vim.api.nvim_create_augroup("line-diagnostics", { clear = true }),
+    callback = function()
+      vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
+      return true
+    end,
+  })
+end, { desc = "Show diagnostic virtual [l]ines" })
+
+m("n", "<leader>kk", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
+
 -- {{ Terminal }}
 
 m("n", "<leader>t", function()
