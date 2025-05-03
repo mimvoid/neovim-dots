@@ -1,6 +1,20 @@
-return {
-  bashls = {},
+local lsps = {
+  "bashls",
+  "ruff",
+  "clangd",
+  "gopls",
+  "nixd",
+  "texlab",
+  "ts_ls",
+}
 
+for _, v in ipairs(lsps) do
+  if vim.fn.executable(vim.fn.exepath(v)) then
+    vim.lsp.enable(v)
+  end
+end
+
+local lsps_with_config = {
   basedpyright = {
     settings = {
       basedpyright = {
@@ -15,27 +29,6 @@ return {
       },
     },
   },
-  ruff = {},
-
-  clangd = {},
-
-  gopls = {},
-
-  -- lua_ls = {
-  --   settings = {
-  --     Lua = {
-  --       completion = {
-  --         callSnippet = "Replace",
-  --       },
-  --       -- Ignore Lua_LS's noisy `missing-fields` warnings
-  --       diagnostics = { disable = { "missing-fields" } },
-  --     },
-  --   },
-  -- },
-
-  -- marksman = {},
-  nixd = {},
-
   nim_langserver = {
     settings = {
       nim = {
@@ -43,7 +36,13 @@ return {
       },
     },
   },
-
-  texlab = {},
-  ts_ls = {},
 }
+
+for k, v in pairs(lsps_with_config) do
+  if vim.fn.executable(vim.fn.exepath(k)) then
+    vim.lsp.config(k, v)
+    vim.lsp.enable(k)
+  end
+end
+
+return vim.tbl_extend("keep", lsps, vim.tbl_keys(lsps_with_config))
