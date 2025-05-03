@@ -1,20 +1,18 @@
 { plugins, ... }:
 
 with plugins;
-let
-  required_langs = [ c lua vim vimdoc query markdown markdown_inline ];
-in
 [
-  nix lua bash go rust nim java
-  css scss html gotmpl javascript typescript
-  latex python r
-  json toml yaml xml
-  hyprlang
-  csv tsv
-  git_config git_rebase gitattributes gitignore
-  cmake
-  comment
-  bibtex
-  gnuplot
+  lua vim vimdoc
+  nix
+  c c_sharp cpp vala
+  rust nim
+  go gotmpl
+  html css scss javascript typescript
+  markdown markdown_inline
+  latex python r java
+  json toml yaml xml csv
+  gitignore
+  bash
+  make
+  ini
 ]
-++ required_langs
