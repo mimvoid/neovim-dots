@@ -47,4 +47,9 @@ with pkgs;
   ];
 
   typescript = typescript-language-server;
+
+  vala = [
+    vala-lint
+    vala-language-server
+  ];
 }

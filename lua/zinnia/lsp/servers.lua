@@ -6,6 +6,7 @@ local lsps = {
   "nixd",
   "texlab",
   "ts_ls",
+  "vala_ls",
 }
 
 for _, v in ipairs(lsps) do

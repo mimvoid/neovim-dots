@@ -17,6 +17,7 @@ let
       go
       typescript
       java
+      vala
     ]
   );
 in
