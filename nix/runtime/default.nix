@@ -8,6 +8,7 @@ let
     with langs;
     [
       nix
+      c
       lua
       latex
       markdown

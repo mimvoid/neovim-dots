@@ -5,7 +5,7 @@
 with pkgs;
 {
   bash = bash-language-server;
-
+  c = clang-tools;
   css = stylelint;
 
   go = [

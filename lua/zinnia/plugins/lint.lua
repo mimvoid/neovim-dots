@@ -12,6 +12,8 @@ return {
 
   config = function()
     require("lint").linters_by_ft = {
+      c = { "clangtidy" },
+      cpp = { "clangtidy" },
       bash = { "bash" },
       latex = { "chktex" },
       lua = { "selene" },

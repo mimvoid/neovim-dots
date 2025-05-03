@@ -21,6 +21,9 @@ return {
       formatters_by_ft = {
         ["_"] = { "trim_whitespace", "trim_newlines" },
 
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+
         css = prettier,
         javascript = prettier,
         javascriptreact = prettier,

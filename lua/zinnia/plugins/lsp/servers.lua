@@ -17,6 +17,8 @@ return {
   },
   ruff = {},
 
+  clangd = {},
+
   gopls = {},
 
   -- lua_ls = {
