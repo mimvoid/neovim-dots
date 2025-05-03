@@ -1,6 +1,6 @@
 local utils = require("zinnia.utils")
 local servers = require("zinnia.lsp.servers")
-require("zinnia.lsp.extra")
+require("zinnia.lsp.diagnostics")
 
 return {
   "neovim/nvim-lspconfig",
