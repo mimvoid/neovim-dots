@@ -16,7 +16,6 @@ let
       python
       go
       typescript
-      java
       vala
     ]
   );
