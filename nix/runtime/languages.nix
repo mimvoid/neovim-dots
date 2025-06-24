@@ -5,7 +5,12 @@
 with pkgs;
 {
   bash = bash-language-server;
-  c = clang-tools;
+
+  c = [
+    clang-tools
+    gdb
+  ];
+
   css = stylelint;
 
   go = [

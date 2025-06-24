@@ -13,6 +13,11 @@ let
   cmp = import ./cmp.nix { inherit pkgs voids; };
   looks = import ./looks.nix { inherit pkgs; };
 
+  debug = with pkgs.vimPlugins; [
+    nvim-dap
+    debugmaster-nvim
+  ];
+
   marks = [
     pkgs.vimPlugins.marks-nvim
     voids.nvim-project-marks
@@ -48,6 +53,7 @@ with pkgs.vimPlugins;
 ++ [ treesitter ]
 ++ cmp
 ++ looks
+++ debug
 ++ marks
 ++ typing
 ++ lang-specific
