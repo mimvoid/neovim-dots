@@ -9,6 +9,7 @@ let
     [
       nix
       c
+      rust
       lua
       latex
       markdown

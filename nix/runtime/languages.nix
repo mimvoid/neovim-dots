@@ -48,7 +48,6 @@ with pkgs;
 
   rust = [
     rust-analyzer
-    clippy
   ];
 
   typescript = typescript-language-server;

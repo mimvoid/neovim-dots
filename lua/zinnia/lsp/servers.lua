@@ -4,6 +4,7 @@ local lsps = {
   "clangd",
   "gopls",
   "nixd",
+  "rust_analyzer",
   "texlab",
   "ts_ls",
   "vala_ls",
