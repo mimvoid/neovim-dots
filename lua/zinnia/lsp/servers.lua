@@ -38,6 +38,19 @@ local lsps_with_config = {
       },
     },
   },
+  rust_analyzer = {
+    settings = {
+      checkOnSave = { command = "clippy" },
+      cargo = {
+        allFeatures = true,
+        buildScripts = false,
+      },
+      completion = {
+        fullFunctionSignatures = { enable = true },
+      },
+      rustfmt = { enable = true },
+    },
+  },
 }
 
 for k, v in pairs(lsps_with_config) do
