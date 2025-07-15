@@ -19,6 +19,7 @@ return {
       lua = { "selene" },
       markdown = { "markdownlint-cli2" },
       nix = { "statix" },
+      rust = { "clippy" },
       vala = { "vala_lint" },
       zsh = { "zsh" },
     }

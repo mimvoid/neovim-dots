@@ -40,7 +40,6 @@ local lsps_with_config = {
   },
   rust_analyzer = {
     settings = {
-      checkOnSave = { command = "clippy" },
       cargo = {
         allFeatures = true,
         buildScripts = false,
