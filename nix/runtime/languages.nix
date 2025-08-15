@@ -50,7 +50,7 @@ with pkgs;
     rust-analyzer
   ];
 
-  typescript = typescript-language-server;
+  typescript = vtsls;
 
   vala = [
     vala-lint
