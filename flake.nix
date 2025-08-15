@@ -5,7 +5,10 @@
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
     nixPatch = {
       url = "github:NicoElbers/nixPatch-nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        neovim-nightly-overlay.follows = ""; # Unused
+      };
     };
   };
 
