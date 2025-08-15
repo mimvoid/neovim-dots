@@ -9,15 +9,11 @@ let
     [
       nix
       c
-      rust
       lua
       latex
       markdown
-      nim
       python
-      go
       typescript
-      vala
     ]
   );
 in

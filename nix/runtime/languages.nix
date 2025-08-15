@@ -7,7 +7,7 @@ with pkgs;
   bash = bash-language-server;
 
   c = [
-    clang-tools
+    # clang-tools
     gdb
   ];
 
