@@ -29,12 +29,10 @@ let
     nvim-treesitter-endwise
     vim-matchup
     voids.neotab
-    fcitx-vim
   ];
 
   lang-specific = [
     pkgs.vimPlugins.vimtex
-    pkgs.vimPlugins.nvim-jdtls
     # voids.r-nvim
   ];
 in

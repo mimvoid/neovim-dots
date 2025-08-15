@@ -3,9 +3,7 @@
 with pkgs.vimPlugins;
 [
   catppuccin-nvim
-
   lualine-nvim
-  alpha-nvim
 
   nvim-web-devicons
   tiny-devicons-auto-colors-nvim
