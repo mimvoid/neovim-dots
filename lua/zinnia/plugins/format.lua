@@ -40,6 +40,7 @@ return {
         latex = { "latexindent" },
         lua = { "stylua" },
         nim = { "nimpretty" },
+        nix = { "nixfmt" },
         ocaml = { "ocamlformat" },
       },
 

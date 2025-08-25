@@ -39,6 +39,7 @@ with pkgs;
   nix = [
     nixd
     statix
+    nixfmt-rfc-style
   ];
 
   python = [
