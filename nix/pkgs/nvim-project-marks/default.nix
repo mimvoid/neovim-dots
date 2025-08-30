@@ -6,13 +6,13 @@
 
 vimUtils.buildVimPlugin rec {
   pname = "nvim-project-marks";
-  version = "0.2.0";
+  version = "0.2.1";
   
   src = fetchFromGitHub {
     owner = "BartSte";
     repo = "nvim-project-marks";
     rev = version;
-    hash = "sha256-/LC/URb4sEURa7S9Ht20k9eTbJ3tZCvkHRwcxlBfra0=";
+    hash = "sha256-tDw0mKDSYwJkOoWcw4G0cmgJK1+s0vVU/+OGxsDOM7w=";
   };
 
   meta = {

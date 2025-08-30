@@ -11,8 +11,8 @@ vimUtils.buildVimPlugin {
   src = fetchFromGitHub {
     owner = "kawre";
     repo = "neotab.nvim";
-    rev = "f6ed1ef49f32586f5db95edae5d6f264c8180d85";
-    hash = "sha256-5IJQwZxDGDMM6KBWKU/EZwa5wciHeTXOZgHPCRmlxJk=";
+    rev = "e99d3e28c5a2066d2d368dfe4ef3827c8d75d337";
+    hash = "sha256-pSLvpKqfi1hQrFAYmXTOUOYERtnr79M23z5so2JOGhE=";
   };
 
   meta = {
