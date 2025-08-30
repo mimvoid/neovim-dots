@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs }:
 let
   # Get custom packages
   # Use with voids.<package>
@@ -10,7 +10,7 @@ let
   );
 
   # Separated plugin lists
-  cmp = import ./cmp.nix { inherit pkgs voids; };
+  cmp = import ./cmp.nix { inherit pkgs; };
   looks = import ./looks.nix { inherit pkgs; };
 
   debug = with pkgs.vimPlugins; [

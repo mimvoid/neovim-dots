@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs }:
 let
   # List LSPs & formatter in a separate file
   langs = import ./languages.nix { inherit pkgs; };

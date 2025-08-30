@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs }:
 
 # A set of lsps, formatters, and linters grouped by language
 

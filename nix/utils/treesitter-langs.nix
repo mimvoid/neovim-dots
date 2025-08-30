@@ -1,4 +1,4 @@
-{ plugins, ... }:
+{ plugins }:
 
 with plugins;
 [

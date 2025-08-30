@@ -7,7 +7,7 @@
 vimUtils.buildVimPlugin rec {
   pname = "nvim-project-marks";
   version = "0.2.1";
-  
+
   src = fetchFromGitHub {
     owner = "BartSte";
     repo = "nvim-project-marks";
