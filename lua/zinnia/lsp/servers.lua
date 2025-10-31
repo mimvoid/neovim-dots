@@ -31,6 +31,15 @@ local lsps_with_config = {
       },
     },
   },
+  lua_ls = {
+    settings = {
+      Lua = {
+        completion = { callSnippet = "Replace" },
+        -- Ignore noisy `missing-fields` warnings
+        diagnostics = { disable = { "missing-fields" } },
+      },
+    },
+  },
   nim_langserver = {
     settings = {
       nim = {
