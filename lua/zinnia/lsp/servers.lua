@@ -35,9 +35,16 @@ local lsps_with_config = {
   lua_ls = {
     settings = {
       Lua = {
+        runtime = {
+          version = "LuaJIT", -- Probably the most often used
+        },
         completion = { callSnippet = "Replace" },
-        -- Ignore noisy `missing-fields` warnings
-        diagnostics = { disable = { "missing-fields" } },
+        diagnostics = {
+          disable = { "missing-fields" }, -- Ignore noisy `missing-fields` warnings
+          globals = { "vim" },
+        },
+        workspace = { checkThirdParty = false },
+        telemetry = { enable = false },
       },
     },
   },
