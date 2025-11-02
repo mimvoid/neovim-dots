@@ -5,6 +5,7 @@ local lsps = {
   "gopls",
   "nixd",
   "rust_analyzer",
+  "teal_ls",
   "texlab",
   "vala_ls",
   "vtsls",
