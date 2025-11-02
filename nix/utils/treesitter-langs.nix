@@ -11,6 +11,7 @@ with plugins;
   html css scss javascript typescript
   markdown markdown_inline
   latex python r java
+  teal
   json toml yaml xml csv
   gitignore
   bash
