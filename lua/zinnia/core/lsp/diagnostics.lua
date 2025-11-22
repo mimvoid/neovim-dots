@@ -1,5 +1,9 @@
 -- Change diagnostic symbols in the sign column (gutter)
-if vim.g.have_nerd_font then
+return function()
+  if not vim.g.have_nerd_font then
+    return
+  end
+
   local signs = {
     Error = "",
     Warn = "",

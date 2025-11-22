@@ -1,6 +1,9 @@
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
+local load_diagnostic_icons = require("zinnia.core.lsp.diagnostics")
+local load_lsp_servers = require("zinnia.core.lsp.servers")
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -34,6 +37,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
   callback = function(event)
+    load_diagnostic_icons()
+    load_lsp_servers()
+
     ---@param keys string
     ---@param desc string
     ---@param mode? string | string[]

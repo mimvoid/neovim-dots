@@ -1,7 +1,9 @@
+# lspsAndRuntimeDeps
+
 { pkgs }:
 let
   # List LSPs & formatter in a separate file
-  langs = import ./languages.nix { inherit pkgs; };
+  langs = import ./utils/languages.nix { inherit pkgs; };
 
   # Specify which languages' tools to include
   used-langs = pkgs.lib.lists.flatten (
@@ -17,11 +19,14 @@ let
     ]
   );
 in
-with pkgs;
-[
-  stdenv.cc.cc
-  tree-sitter
-  ripgrep
-  prettierd
-]
-++ used-langs
+{
+  general =
+    with pkgs;
+    [
+      universal-ctags
+      tree-sitter
+      ripgrep
+      prettierd
+    ]
+    ++ used-langs;
+}
