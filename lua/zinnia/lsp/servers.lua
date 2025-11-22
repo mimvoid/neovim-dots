@@ -32,6 +32,12 @@ local lsps_with_config = {
       },
     },
   },
+  emmylua_ls = {
+    settings = {
+      runtime = { version = "LuaJIT" },
+      completion = { callSnippet = true },
+    },
+  },
   lua_ls = {
     settings = {
       Lua = {
