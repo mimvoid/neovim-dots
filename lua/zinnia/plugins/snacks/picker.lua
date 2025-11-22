@@ -1,12 +1,10 @@
-local as_normal = function(tbl)
+local function as_normal(tbl)
   local normal_opts = {
     layout = "vertical_min_input",
     focus = "list",
 
     -- start in normal mode
-    on_show = function()
-      vim.cmd.stopinsert()
-    end,
+    on_show = vim.cmd.stopinsert,
   }
 
   return vim.tbl_extend("force", normal_opts, tbl)

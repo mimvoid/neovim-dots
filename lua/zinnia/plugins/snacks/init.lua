@@ -29,8 +29,8 @@ return {
   end,
 
   keys = function()
-    function pick(key, cmd, desc)
-      if desc == nil then
+    local function pick(key, cmd, desc)
+      if not desc then
         desc = "Find " .. cmd
       end
 

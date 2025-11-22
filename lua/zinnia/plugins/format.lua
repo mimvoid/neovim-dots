@@ -47,10 +47,4 @@ return {
       notify_on_error = false,
     }
   end,
-
-  formatters = {
-    biome = {
-      args = { "format", "--indent-style=space", "--stdin-file-path", "$FILENAME" },
-    },
-  },
 }

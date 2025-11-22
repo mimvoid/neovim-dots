@@ -1,4 +1,4 @@
-function preview(opts)
+local function preview(opts)
   local orig = { win = "preview", title = "{preview}", border = vim.g.borderStyle }
   return vim.tbl_extend("force", orig, opts)
 end

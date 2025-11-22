@@ -24,7 +24,7 @@ local load_lazy = utils.set(function()
   end
   vim.opt.rtp:prepend(lazypath)
 end, function()
-  vim.opt.rtp:prepend([[lazy.nvim-plugin-path]])
+  vim.opt.rtp:prepend("lazy.nvim-plugin-path")
 end)
 
 load_lazy()

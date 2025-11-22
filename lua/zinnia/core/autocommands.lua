@@ -7,9 +7,7 @@
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = vim.highlight.on_yank,
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
@@ -36,9 +34,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
   callback = function(event)
-    function map(keys, func, desc, mode)
-      mode = mode or "n"
-      vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+    ---@param keys string
+    ---@param desc string
+    ---@param mode? string | string[]
+    local function map(keys, func, desc, mode)
+      vim.keymap.set(mode or "n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
     end
 
     -- Rename variable under cursor

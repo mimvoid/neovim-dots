@@ -23,8 +23,7 @@ return {
     require("lspconfig")
 
     -- Capabilties
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+    local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
     vim.lsp.config("*", { capabilties = capabilities })
 
     -- Packages

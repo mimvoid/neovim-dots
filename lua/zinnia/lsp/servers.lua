@@ -11,7 +11,8 @@ local lsps = {
   "vtsls",
 }
 
-for _, v in ipairs(lsps) do
+for i = 1, #lsps do
+  local v = lsps[i]
   if vim.fn.executable(vim.fn.exepath(v)) then
     vim.lsp.enable(v)
   end
@@ -57,7 +58,7 @@ local lsps_with_config = {
   nim_langserver = {
     settings = {
       nim = {
-        nimsuggestPath = "~/.nimble/bin/custom_lang_server_build"
+        nimsuggestPath = "~/.nimble/bin/custom_lang_server_build",
       },
     },
   },

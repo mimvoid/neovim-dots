@@ -14,7 +14,7 @@ if vim.g.have_nerd_font then
   }
 
   for type, icon in pairs(signs) do
-    local key = vim.diagnostic.severity[string.upper(type)]
+    local key = vim.diagnostic.severity[type:upper()]
     local hl = "DiagnosticSign" .. type
 
     signs_config.text[key] = icon

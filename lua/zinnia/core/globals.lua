@@ -34,6 +34,6 @@ local disabled_built_ins = {
   "tutor_mode_plugin",
 }
 
-for _, plugin in pairs(disabled_built_ins) do
-  vim.g["loaded_" .. plugin] = 1
+for i = 1, #disabled_built_ins do
+  vim.g["loaded_" .. disabled_built_ins[i]] = 1
 end
