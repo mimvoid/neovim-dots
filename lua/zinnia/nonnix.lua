@@ -45,6 +45,5 @@ require("nixCatsUtils.catPaq").setup({
   -- typing
   { "altermo/ultimate-autopair.nvim", opt = true },
   { "windwp/nvim-ts-autotag", opt = true },
-  { "andymass/vim-matchup", opt = true },
   { "kawre/neotab.nvim", opt = true },
 })

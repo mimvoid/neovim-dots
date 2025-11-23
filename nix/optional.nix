@@ -40,7 +40,6 @@ let
     ultimate-autopair-nvim
     nvim-ts-autotag
     nvim-treesitter-endwise
-    vim-matchup
     voids.neotab
   ];
 in

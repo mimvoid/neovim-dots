@@ -24,7 +24,6 @@ local disabled_built_ins = {
   "logipat",
   "rrhelper",
   "spellfile_plugin",
-  "matchit",
   "tutor_mode_plugin",
 }
 
