@@ -49,6 +49,7 @@ in
     [
       nvim-lspconfig
       nvim-lint
+      conform-nvim
 
       snacks-nvim
       guess-indent-nvim
