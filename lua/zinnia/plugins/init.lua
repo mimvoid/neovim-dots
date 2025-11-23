@@ -6,8 +6,6 @@ require("zinnia.plugins.snacks")
 require("zinnia.plugins.snippets")
 require("zinnia.plugins.blink")
 
-require("projectmarks").setup()
-
 -- VimTeX
 vim.g.vimtex_callback_progpath = "nvim"
 vim.g.vimtex_enabled = true

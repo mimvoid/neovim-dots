@@ -1,15 +1,9 @@
-local globals = {
-  -- Leader key
-  mapleader = " ",
-  maplocalleader = " ",
-  have_nerd_font = true,
+-- Leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-  borderStyle = "rounded",
-}
-
-for k, v in pairs(globals) do
-  vim.g[k] = v
-end
+vim.g.have_nerd_font = true
+vim.g.borderStyle = "rounded"
 
 -- Disable some built-in plugins
 local disabled_built_ins = {

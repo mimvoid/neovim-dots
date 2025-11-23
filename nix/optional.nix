@@ -51,7 +51,6 @@ in
       nvim-lspconfig
       nvim-lint
 
-      plenary-nvim
       snacks-nvim
       guess-indent-nvim
       marks-nvim
