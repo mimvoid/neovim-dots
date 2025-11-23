@@ -1,10 +1,5 @@
--- Setup outside Nix
-local nixcats = require("nixCatsUtils")
-
-nixcats.setup({ non_nix_value = true })
-if not nixcats.isNixCats then
-  require("zinnia.nonnix")
-end
+-- Setup for outside Nix
+require("nixCatsUtils").setup()
 
 -- Main config
 require("zinnia")

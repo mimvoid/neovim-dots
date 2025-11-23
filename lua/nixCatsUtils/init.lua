@@ -1,20 +1,11 @@
 local M = {}
 
---[[
-  This file is for making your config still work WITHOUT nixCats.
-  When you don't use nixCats to load your config,
-  you wont have the nixCats plugin.
-
-  The setup function defined here defines a mock nixCats plugin when nixCats wasnt used to load the config.
-  This will help avoid indexing errors when the nixCats plugin doesnt exist.
---]]
-
 M.isNixCats = vim.g[ [[nixCats-special-rtp-entry-nixCats]] ] ~= nil
 
----This function will setup a mock nixCats plugin when not using nix
----It will help prevent you from running into indexing errors without a nixCats plugin from nix.
----If you loaded the config via nix, it does nothing
----@param v { non_nix_value: boolean? } # non_nix_value defaults to true if not provided or not a boolean.
+---Sets up a mock nixCats plugin when not using Nix.
+---It will help avoid indexing errors when the nixCats plugin doesn't exist.
+---@param v? { non_nix_value: boolean } non_nix_value defaults to true if not provided or not a boolean.
+---@return nil
 function M.setup(v)
   if M.isNixCats then
     return
@@ -26,7 +17,8 @@ function M.setup(v)
   else
     nixCats_default_value = true
   end
-  local mk_with_meta = function(tbl)
+
+  local function mk_with_meta(tbl)
     return setmetatable(tbl, {
       __call = function(_, attrpath)
         local strtable = {}
@@ -39,7 +31,7 @@ function M.setup(v)
             table.insert(strtable, key)
           end
         else
-          print("function requires a table of strings or a dot separated string")
+          print("mk_with_meta requires a table of strings or a dot separated string")
           return
         end
 
@@ -47,6 +39,7 @@ function M.setup(v)
       end,
     })
   end
+
   package.preload["nixCats"] = function()
     local ncsub = {
       get = function(_)
@@ -78,14 +71,16 @@ function M.setup(v)
       end,
     })
   end
+
   _G.nixCats = require("nixCats")
 end
 
----allows you to guarantee a boolean is returned, and also declare a different
----default value than specified in setup when not using nix to load the config
----@overload fun(v: string|string[]): boolean
----@overload fun(v: string|string[], default: boolean): boolean
-function M.enableForCategory(v, default)
+---Allows you to guarantee a boolean is returned, and also declare a different
+---default value than specified in setup when not using Nix to load the config.
+---@param v string|string[]
+---@param default? boolean
+---@return boolean
+function M.enable_for_category(v, default)
   if M.isNixCats or default == nil then
     if nixCats(v) then
       return true
@@ -95,8 +90,8 @@ function M.enableForCategory(v, default)
   return default
 end
 
----if nix, return value of nixCats(v) else return default
----Exists to specify a different non_nix_value than the one in setup()
+---If Nix, return value of nixCats(v), else return default.
+---Exists to specify a different non_nix_value than the one in setup().
 ---@param v string|string[]
 ---@param default any
 ---@return any
@@ -107,16 +102,16 @@ function M.getCatOrDefault(v, default)
   return default
 end
 
----for conditionally disabling build steps on nix, as they are done via nix
----I should probably have named it dontAddIfCats or something.
----@overload fun(v: any): any?
----Will return the second value if nix, otherwise the first
----@overload fun(v: any, o: any): any
-function M.lazyAdd(v, o)
+---Return the specified values if or if not on Nix.
+---@generic T, E
+---@param nix T The value to return if on Nix.
+---@param non_nix E The value to return if not on Nix.
+---@return T|E
+function M.nix_or(nix, non_nix)
   if M.isNixCats then
-    return o
+    return nix
   end
-  return v
+  return non_nix
 end
 
 return M

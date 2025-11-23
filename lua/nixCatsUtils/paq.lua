@@ -1,12 +1,7 @@
 local M = {}
 
--- NOTE: This function is for defining a paq.nvim fallback method of downloading plugins
--- when nixCats was not used to install your config.
--- If you only ever load your config using nixCats, you don't need this file.
-
--- all neovim package managers that use the regular plugin loading scheme
--- can be used this way, just do whatever the plugin manager needs to put it in the
--- opt directory for lazy loading, and add the build steps so that when theres no nix the steps are ran
+---Defines a paq.nvim fallback method of downloading plugins when nixCats was not used to
+---install your config.
 function M.setup(v)
   local function clone_paq()
     local path = vim.fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
@@ -16,6 +11,7 @@ function M.setup(v)
       return true
     end
   end
+
   local function bootstrap_paq(packages)
     local first_install = clone_paq()
     vim.cmd.packadd("paq-nvim")
@@ -26,6 +22,7 @@ function M.setup(v)
     paq(packages)
     paq.install()
   end
+
   bootstrap_paq(vim.list_extend({ "savq/paq-nvim" }, v))
 end
 

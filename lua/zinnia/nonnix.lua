@@ -1,6 +1,6 @@
 -- Load plugins via Paq when not on Nix
 
-require("nixCatsUtils.catPaq").setup({
+require("nixCatsUtils.paq").setup({
   -- Startup --
   { "lumen-oss/lz.n" },
   { "nvim-mini/mini.nvim" },
