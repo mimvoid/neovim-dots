@@ -3,43 +3,38 @@ local c = require("zinnia.colors").hues
 
 local opts = {
   transparent_background = true,
+  float = { transparent = true },
 
   styles = {
     loops = { "italic" },
     types = { "italic" },
   },
 
+  lsp_styles = {
+    virtual_text = {
+      errors = { "italic" },
+      hints = { "italic" },
+      warnings = { "italic" },
+      information = { "italic" },
+      ok = { "italic" },
+    },
+    underlines = {
+      errors = { "undercurl" },
+      hints = { "undercurl" },
+      warnings = { "undercurl" },
+      information = { "undercurl" },
+      ok = { "undercurl" },
+    },
+    inlay_hints = { background = true },
+  },
+
   -- plugins
   default_integrations = false,
   integrations = {
-    blink_cmp = true,
+    blink_cmp = { enabled = true },
     mini = { enabled = true },
-    markdown = true,
     rainbow_delimiters = true,
     snacks = { enabled = true },
-    telescope = { enabled = true },
-    treesitter = true,
-
-    native_lsp = {
-      enabled = true,
-      virtual_text = {
-        errors = { "italic" },
-        hints = { "italic" },
-        warnings = { "italic" },
-        information = { "italic" },
-        ok = { "italic" },
-      },
-      underlines = {
-        errors = { "undercurl" },
-        hints = { "undercurl" },
-        warnings = { "undercurl" },
-        information = { "undercurl" },
-        ok = { "undercurl" },
-      },
-      inlay_hints = {
-        background = true,
-      },
-    },
   },
 
   -- Set custom color palette, since I don't use frappe
