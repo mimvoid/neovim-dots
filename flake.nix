@@ -1,92 +1,67 @@
 {
-  description = "My neovim config";
+  description = "My neovim flake, with extra cats! nixCats!";
 
   inputs = {
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
-    nixPatch = {
-      url = "github:NicoElbers/nixPatch-nvim";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        neovim-nightly-overlay.follows = ""; # Unused
-      };
-    };
+    nixCats.url = "github:BirdeeHub/nixCats-nvim";
   };
 
-  outputs = { nixpkgs, nixPatch, ... }:
-  let
-    # Copied from flake utils
-    eachSystem =
-      systems: f:
-      let
-        # Merge together the outputs for all systems.
-        op =
-          attrs: system:
-          let
-            ret = f system;
-          in
-          builtins.foldl' (
-            attrs: key:
-            attrs
-            // {
-              ${key} = (attrs.${key} or { }) // {
-                ${system} = ret.${key};
-              };
-            }
-          ) attrs (builtins.attrNames ret);
-      in
-      builtins.foldl' op { } (
-        if !builtins ? currentSystem || builtins.elem builtins.currentSystem systems then
-          systems
-        else
-          # Add the current system if --impure is used
-          systems ++ [ builtins.currentSystem ]
-      );
+  outputs =
+    { self, nixpkgs, ... }@inputs:
+    let
+      inherit (inputs.nixCats) utils;
+      luaPath = ./.;
+      forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
 
-    forEachSystem = eachSystem nixpkgs.lib.platforms.all;
-  in
-  let
-    name = "nvim";
+      extra_pkg_config = { };
+      dependencyOverlays = [ ];
 
-    extra_pkg_config = { };
+      categoryDefinitions =
+        { pkgs, ... }:
+        {
+          lspsAndRuntimeDeps = import ./nix/runtime.nix { inherit pkgs; };
+          startupPlugins = import ./nix/startup.nix { inherit pkgs; };
+          optionalPlugins = import ./nix/optional.nix { inherit pkgs; };
 
-    configuration =
-      { pkgs, ... }:
-      {
-        luaPath = "${./.}";
+          sharedLibraries = { };
+          environmentVariables = { };
+          extraWrapperArgs = { };
 
-        plugins = import ./nix/plugins { inherit pkgs; };
-        runtimeDeps = import ./nix/runtime { inherit pkgs; };
-
-        environmentVariables = { };
-        aliases = [ ];
-        extraWrapperArgs = [ ];
-
-        python3Packages = [ ];
-        extraPython3WrapperArgs = [ ];
-        luaPackages = [ ];
-        sharedLibraries = [ ];
-
-        extraConfig = [ ]; # Extra lua configuration put at the top of your init.lua
-        # customSubs = with patchUtils; [ ];
-
-        settings = {
-          withNodeJs = false;
-          withRuby = false;
-          withPerl = false;
-          withPython3 = false;
-          extraName = "";
-          configDirName = "nvim";
-          neovim-unwrapped = null;
-
-          patchSubs = true; # original repo patches
-          suffix-path = false; # runtime dependencies
-          suffix-LD = false; # shared libraries dependencies
+          python3.libraries = { };
+          extraLuaPackages = { };
         };
+
+      packageDefinitions = {
+        nvim =
+          { ... }:
+          {
+            settings = {
+              suffix-path = true;
+              suffix-LD = true;
+              wrapRc = true;
+              aliases = [ ];
+            };
+            categories.general = true;
+          };
       };
-  in
-  forEachSystem (system: {
-    packages.default = nixPatch.configWrapper.${system} {
-      inherit configuration extra_pkg_config name;
-    };
-  });
+      defaultPackageName = "nvim";
+    in
+    forEachSystem (
+      system:
+      let
+        nixCatsBuilder = utils.baseBuilder luaPath {
+          inherit
+            nixpkgs
+            system
+            dependencyOverlays
+            extra_pkg_config
+            ;
+        } categoryDefinitions packageDefinitions;
+
+        defaultPackage = nixCatsBuilder defaultPackageName;
+      in
+      {
+        packages = utils.mkAllWithDefault defaultPackage;
+      }
+    );
 }

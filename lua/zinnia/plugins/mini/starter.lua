@@ -1,4 +1,4 @@
-return {
+require("mini.starter").setup({
   header = table.concat({
     [[███╗   ██╗███████╗ ███████╗ ██╗   ██╗██╗███╗   ███╗]],
     [[████╗  ██║██╔════╝██╔════██╗██║   ██║██║████╗ ████║]],
@@ -10,4 +10,4 @@ return {
 
   footer = os.date(),
   evaluate_single = true,
-}
+})

@@ -1,16 +1,10 @@
-{ pkgs }:
-
 # A set of lsps, formatters, and linters grouped by language
+{ pkgs }:
 
 with pkgs;
 {
   bash = bash-language-server;
-
-  c = [
-    # clang-tools
-    gdb
-  ];
-
+  c = gdb;
   css = stylelint;
 
   go = [
@@ -20,20 +14,14 @@ with pkgs;
   ];
 
   java = jdt-language-server;
-
   latex = texlab;
 
   lua = [
-    # lua-language-server
     stylua
     selene
   ];
 
-  markdown = [
-    # marksman
-    markdownlint-cli2
-  ];
-
+  markdown = markdownlint-cli2;
   nim = nimlangserver;
 
   nix = [
@@ -47,10 +35,7 @@ with pkgs;
     ruff
   ];
 
-  rust = [
-    rust-analyzer
-  ];
-
+  rust = rust-analyzer;
   typescript = vtsls;
 
   vala = [

@@ -1,16 +1,14 @@
-return {
-  {
-    "Saghen/blink.compat",
-    opts = { impersonate_nvim_cmp = true },
-  },
+-- Plugins that fall outside the structure of lz.n plugin specs
+require("zinnia.plugins.colorscheme")
+require("zinnia.plugins.debug")
+require("zinnia.plugins.mini")
+require("zinnia.plugins.snacks")
+require("zinnia.plugins.snippets")
+require("zinnia.plugins.blink")
 
-  "HiPhish/rainbow-delimiters.nvim",
-  {
-    "nmac427/guess-indent.nvim",
-    opts = {},
-  },
-  {
-    dir = "/home/zinnia/Projects/mdopen.nvim",
-    opts = {},
-  },
-}
+require("projectmarks").setup()
+
+-- VimTeX
+vim.g.vimtex_callback_progpath = "nvim"
+vim.g.vimtex_enabled = true
+vim.g.vimtex_view_method = "zathura"

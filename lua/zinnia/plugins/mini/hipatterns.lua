@@ -1,4 +1,4 @@
-return {
+require("mini.hipatterns").setup({
   highlighters = {
     fixme = {
       extmark_opts = { sign_text = "" },
@@ -21,4 +21,4 @@ return {
       pattern = "%f[%w]()TODO()%f[%W]",
     },
   },
-}
+})

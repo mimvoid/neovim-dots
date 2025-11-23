@@ -1,11 +1,10 @@
 local snippets = require("zinnia.plugins.snippets.all")
+local load = require("lz.n").load
 
-return {
-  "L3MON4D3/LuaSnip",
-  version = "v2.*",
-  dependences = { "rafamadriz/friendly-snippets" },
-
-  config = function()
+load({ "friendly-snippets" })
+load({
+  "luasnip",
+  after = function()
     -- for friendly-snippets
     require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -17,5 +16,5 @@ return {
     })
 
     ls.add_snippets("all", snippets(ls))
-  end
-}
+  end,
+})

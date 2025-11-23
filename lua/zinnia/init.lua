@@ -1,2 +1,4 @@
 require("zinnia.core")
-require("zinnia.lazy")
+
+require("zinnia.plugins") -- Load plugins
+require("lz.n").load("zinnia.lz") -- Lazy load plugin specs
