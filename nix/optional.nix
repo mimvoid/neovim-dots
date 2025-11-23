@@ -22,7 +22,6 @@ let
   ];
 
   looks = with pkgs.vimPlugins; [
-    catppuccin-nvim
     lualine-nvim
 
     nvim-web-devicons
@@ -39,7 +38,6 @@ let
 
   marks = [
     pkgs.vimPlugins.marks-nvim
-    voids.nvim-project-marks
   ];
 
   typing = with pkgs.vimPlugins; [
@@ -48,10 +46,6 @@ let
     nvim-treesitter-endwise
     vim-matchup
     voids.neotab
-  ];
-
-  lang-specific = [
-    pkgs.vimPlugins.vimtex
   ];
 in
 {
@@ -67,7 +61,6 @@ in
       nvim-lspconfig
       nvim-lint
 
-      mini-nvim
       plenary-nvim
       snacks-nvim
       guess-indent-nvim
@@ -77,6 +70,5 @@ in
     ++ looks
     ++ debug
     ++ marks
-    ++ typing
-    ++ lang-specific;
+    ++ typing;
 }

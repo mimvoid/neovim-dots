@@ -1,16 +1,10 @@
-return {
-  {
-    "Saghen/blink.compat",
-    opts = { impersonate_nvim_cmp = true },
-  },
+-- Plugins that do not need to be lazy loaded
+require("zinnia.plugins.colorscheme")
+require("zinnia.plugins.mini")
 
-  "HiPhish/rainbow-delimiters.nvim",
-  {
-    "nmac427/guess-indent.nvim",
-    opts = {},
-  },
-  {
-    dir = "/home/zinnia/Projects/mdopen.nvim",
-    opts = {},
-  },
-}
+require("projectmarks").setup()
+
+-- VimTeX
+vim.g.vimtex_callback_progpath = "nvim"
+vim.g.vimtex_enabled = true
+vim.g.vimtex_view_method = "zathura"
