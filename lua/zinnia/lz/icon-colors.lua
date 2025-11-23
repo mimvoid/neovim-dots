@@ -2,12 +2,11 @@ local b = require("zinnia.colors").base16
 local c = require("zinnia.colors").hues
 
 return {
-  "rachartier/tiny-devicons-auto-colors.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  event = "VeryLazy",
+  "tiny-devicons-auto-colors.nvim",
+  event = "DeferredUIEnter",
 
-  opts = function()
+  after = function()
     local theme_colors = require("catppuccin.palettes").get_palette("frappe")
-    return { colors = theme_colors }
-  end
+    require("tiny-devicons-auto-colors").setup({ colors = theme_colors })
+  end,
 }

@@ -1,15 +1,16 @@
 return {
   {
-    "altermo/ultimate-autopair.nvim",
+    "ultimate-autopair.nvim",
     event = { "InsertEnter", "CmdlineEnter" },
-    branch = "v0.6", --recommended as each new version will have breaking changes
-    opts = { cmap = false },
+    after = function()
+      require("ultimate-autopair").setup({ cmap = false })
+    end,
   },
   {
-    "windwp/nvim-ts-autotag",
-    opts = {
-      opts = { enable_close_on_slash = true },
-    },
+    "nvim-ts-autotag",
+    after = function()
+      require("nvim-ts-autotag").setup({ opts = { enable_close_on_slash = true } })
+    end,
   },
-  { "andymass/vim-matchup" },
+  { "vim-matchup" },
 }

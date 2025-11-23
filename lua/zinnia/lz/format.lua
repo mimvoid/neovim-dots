@@ -1,5 +1,5 @@
 return {
-  "stevearc/conform.nvim",
+  "conform.nvim",
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
 
@@ -9,15 +9,14 @@ return {
       function()
         require("conform").format({ async = true, lsp_format = "fallback" })
       end,
-      mode = "",
       desc = "[F]ormat buffer",
     },
   },
 
-  opts = function()
+  after = function()
     local prettier = { "prettierd", "prettier", stop_after_first = true }
 
-    return {
+    require("conform").setup({
       formatters_by_ft = {
         ["_"] = { "trim_whitespace", "trim_newlines" },
 
@@ -45,6 +44,6 @@ return {
       },
 
       notify_on_error = false,
-    }
+    })
   end,
 }

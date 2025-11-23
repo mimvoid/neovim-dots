@@ -36,10 +36,6 @@ let
     debugmaster-nvim
   ];
 
-  marks = [
-    pkgs.vimPlugins.marks-nvim
-  ];
-
   typing = with pkgs.vimPlugins; [
     ultimate-autopair-nvim
     nvim-ts-autotag
@@ -49,26 +45,20 @@ let
   ];
 in
 {
-  general = [
-    treesitter
-  ];
-
-  full =
+  general =
     with pkgs.vimPlugins;
     [
-      lazy-nvim
-
       nvim-lspconfig
       nvim-lint
 
       plenary-nvim
       snacks-nvim
       guess-indent-nvim
+      marks-nvim
     ]
     ++ [ treesitter ]
     ++ cmp
     ++ looks
     ++ debug
-    ++ marks
     ++ typing;
 }

@@ -1,14 +1,15 @@
 return {
-  "kawre/neotab.nvim",
+  "neotab.nvim",
   event = "InsertEnter",
-
-  opts = {
-    smart_punctuators = {
-      enabled = true,
-      semicolon = {
+  after = function()
+    require("neotab").setup({
+      smart_punctuators = {
         enabled = true,
-        ft = { "nix", "javascript", "typescript" },
+        semicolon = {
+          enabled = true,
+          ft = { "nix", "javascript", "typescript" },
+        },
       },
-    },
-  },
+    })
+  end,
 }

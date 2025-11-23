@@ -1,16 +1,16 @@
 return {
-  "mfussenegger/nvim-lint",
-
+  "nvim-lint",
   keys = {
     {
       "<leader>bl",
-      function() require("lint").try_lint() end,
+      function()
+        require("lint").try_lint()
+      end,
       mode = "n",
       desc = "Lint buffer",
     },
   },
-
-  config = function()
+  after = function()
     require("lint").linters_by_ft = {
       c = { "clangtidy" },
       cpp = { "clangtidy" },

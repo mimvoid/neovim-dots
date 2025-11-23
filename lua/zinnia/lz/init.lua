@@ -1,16 +1,8 @@
+-- Table of plugin specs to be passed to lz.n
 return {
-  {
-    "Saghen/blink.compat",
-    opts = { impersonate_nvim_cmp = true },
-  },
-
-  "HiPhish/rainbow-delimiters.nvim",
-  {
-    "nmac427/guess-indent.nvim",
-    opts = {},
-  },
-  {
-    dir = "/home/zinnia/Projects/mdopen.nvim",
-    opts = {},
-  },
+  { "rainbow-delimiters.nvim" },
+  { "guess-indent.nvim" },
+  { "marks.nvim", event = "DeferredUIEnter" },
+  { "nvim-web-devicons" },
+  -- { dir = "/home/zinnia/Projects/mdopen.nvim" },
 }
