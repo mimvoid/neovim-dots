@@ -40,14 +40,13 @@ return {
             -- Lists the LSPs in the current buffer filetype
             function()
               local clients = vim.lsp.get_clients({ bufnr = 0 })
-
               if #clients == 0 then
                 return ""
               end
 
               local ft_clients = {}
-              for _, client in pairs(clients) do
-                table.insert(ft_clients, client.name)
+              for i = 1, #clients do
+                table.insert(ft_clients, clients[i].name)
               end
 
               return table.concat(ft_clients, ", ")

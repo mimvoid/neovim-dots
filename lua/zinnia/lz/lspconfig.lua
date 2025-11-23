@@ -4,19 +4,14 @@ return {
   "nvim-lspconfig",
   after = function()
     -- Capabilties
-    local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local client_caps = vim.lsp.protocol.make_client_capabilities()
+    local capabilities = require("blink.cmp").get_lsp_capabilities(client_caps)
     vim.lsp.config("*", { capabilties = capabilities })
 
+    -- Use mason outside Nix
     if not nixcats.isNixCats then
-      -- Use mason outside Nix
-      local load = require("lz.n").load
-      load({
-        { "mason.nvim", lazy = false },
-        { "mason-lspconfig.nvim", lazy = false },
-      })
-
+      vim.cmd.packadd("mason.nvim")
       require("mason").setup()
-      require("mason-lspconfig").setup({ ensure_installed = servers })
     end
   end,
 }

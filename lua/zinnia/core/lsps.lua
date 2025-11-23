@@ -82,5 +82,3 @@ for k, v in pairs(lsps_with_config) do
     vim.lsp.enable(k)
   end
 end
-
-return vim.tbl_extend("keep", lsps, vim.tbl_keys(lsps_with_config))

@@ -1,6 +1,3 @@
-local picker = require("zinnia.plugins.snacks.picker")
-picker.layouts = require("zinnia.plugins.snacks.picker-layouts")
-
 local function pick(key, cmd, desc)
   if not desc then
     desc = "Find " .. cmd
@@ -25,7 +22,7 @@ require("lz.n").load({
         height = 0.8,
       },
 
-      picker = picker,
+      picker = require("zinnia.plugins.snacks.picker"),
 
       input = { enabled = true },
       lazygit = { enabled = true },

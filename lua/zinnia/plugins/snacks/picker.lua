@@ -16,6 +16,7 @@ return {
   layout = function()
     return vim.o.columns >= 90 and "default" or "vertical"
   end,
+  layouts = require("zinnia.plugins.snacks.picker-layouts"),
 
   matcher = {
     cwd_bonus = true,

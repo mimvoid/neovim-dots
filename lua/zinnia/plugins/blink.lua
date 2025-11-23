@@ -1,11 +1,15 @@
-local sources = require("zinnia.plugins.blink.sources")
 local load = require("lz.n").load
 
 load({
   "blink.cmp",
   after = function()
     require("blink.cmp").setup({
-      sources = sources,
+      sources = {
+        providers = {
+          path = { opts = { trailing_slash = false } },
+          lsp = { min_keyword_length = 1 },
+        },
+      },
 
       keymap = { preset = "default" },
       appearance = { nerd_font_variant = "mono" },

@@ -19,12 +19,6 @@ require("mini.diff").setup({
   },
 })
 
-require("mini.files").setup({
-  mappings = { go_in_plus = "<cr>" },
-  options = { permanent_delete = false, use_as_default_explorer = true },
-  windows = { width_focus = 25, width_nofocus = 15 },
-})
-
 require("mini.tabline").setup({
   format = function(buf_id, label)
     local faded = { fg = c.base16.base03 }

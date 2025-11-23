@@ -15,7 +15,6 @@ require("nixCatsUtils.paq").setup({
   -- lsps & diagnostics
   { "neovim/nvim-lspconfig", opt = true },
   { "williamboman/mason.nvim", opt = true },
-  { "williamboman/mason-lspconfig.nvim", opt = true },
 
   -- lint and format
   { "mfussenegger/nvim-lint", opt = true },

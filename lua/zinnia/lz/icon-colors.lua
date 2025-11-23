@@ -1,6 +1,3 @@
-local b = require("zinnia.colors").base16
-local c = require("zinnia.colors").hues
-
 return {
   "tiny-devicons-auto-colors.nvim",
   event = "DeferredUIEnter",
