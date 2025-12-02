@@ -1,12 +1,12 @@
 local function preview(opts)
-  local orig = { win = "preview", title = "{preview}", border = vim.g.borderStyle }
+  local orig = { win = "preview", title = "{preview}", border = vim.g.winborder }
   return vim.tbl_extend("force", orig, opts)
 end
 
 local info_title = "{title} {live} {flags}"
 local input_list = {
   box = "vertical",
-  border = vim.g.borderStyle,
+  border = vim.g.winborder,
   title = info_title,
   { win = "input", height = 1, border = "bottom" },
   { win = "list", border = "none" },
@@ -50,7 +50,7 @@ return {
       border = "none",
       title_pos = "center",
       { win = "input", height = 1, border = "none" },
-      { win = "list", border = vim.g.borderStyle, title = info_title },
+      { win = "list", border = vim.g.winborder, title = info_title },
       preview({ height = 0.5 }),
     },
   },
@@ -64,7 +64,7 @@ return {
       height = 0.4,
       min_height = 10,
       box = "vertical",
-      border = vim.g.borderStyle,
+      border = vim.g.winborder,
       title = info_title,
       { win = "input", height = 1, border = "bottom" },
       { win = "list", border = "none" },

@@ -11,18 +11,13 @@ return function()
     Info = "",
   }
 
-  local signs_config = {
-    text = {},
-    linehl = {},
-    numhl = {},
-  }
+  local signs_config = { text = {}, numhl = {} }
 
-  for type, icon in pairs(signs) do
-    local key = vim.diagnostic.severity[type:upper()]
-    local hl = "DiagnosticSign" .. type
+  for diag_level, icon in pairs(signs) do
+    local key = vim.diagnostic.severity[diag_level:upper()]
 
     signs_config.text[key] = icon
-    signs_config.numhl[key] = hl
+    signs_config.numhl[key] = "DiagnosticSign" .. diag_level
   end
 
   vim.diagnostic.config({ signs = signs_config })

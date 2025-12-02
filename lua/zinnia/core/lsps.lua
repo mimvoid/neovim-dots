@@ -1,3 +1,4 @@
+-- LSPs without settings
 local lsps = {
   "bashls",
   "ruff",
@@ -18,6 +19,7 @@ for i = 1, #lsps do
   end
 end
 
+-- LSPs with settings
 local lsps_with_config = {
   basedpyright = {
     settings = {

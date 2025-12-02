@@ -1,29 +1,36 @@
 local m = vim.keymap.set
 
--- Insert mode navigation
+-- [[ Insert mode ]]
+
+-- Normal mode-like navigation for insert mode
 m("i", "<A-j>", "<Down>", { desc = "Move down" })
 m("i", "<A-k>", "<Up>", { desc = "Move up" })
 m("i", "<A-h>", "<Left>", { desc = "Move left" })
 m("i", "<A-l>", "<Right>", { desc = "Move right" })
 
-m("i", "fj", "<esc>")
+m("i", "fj", "<esc>", { desc = "Quick escape" })
 
--- Buffers
-m("n", "<leader>x", "<cmd>bp<bar>sp<bar>bn<bar>bd<cr>", { desc = "Close buffer" })
-m("n", "<Tab>", "<cmd>bn<cr>", { desc = "Next buffer" })
-m("n", "<S-Tab>", "<cmd>bp<cr>", { desc = "Previous buffer" })
+-- [[ Buffers ]]
 
--- Windows
+m("n", "<leader>x", "<cmd>bdelete<cr>", { desc = "Close buffer" })
+m("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+m("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
+
+-- [[ Windows ]]
+
+-- Split windows
 m("n", "<leader>j", "<C-W>s", { desc = "Split window below" })
 m("n", "<leader>l", "<C-W>v", { desc = "Split window right" })
 
+-- Focus windows
 m("n", "<C-h>", "<C-w><C-h>", { desc = "Focus left window" })
 m("n", "<C-l>", "<C-w><C-l>", { desc = "Focus right window" })
 m("n", "<C-j>", "<C-w><C-j>", { desc = "Focus lower window" })
 m("n", "<C-k>", "<C-w><C-k>", { desc = "Focus upper window" })
 
--- Diagnostic keymaps
-m("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+-- [[ Diagnostics ]]
+
+m("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 
 m("n", "<leader>kl", function()
   vim.diagnostic.config({
@@ -38,11 +45,11 @@ m("n", "<leader>kl", function()
       return true
     end,
   })
-end, { desc = "Show diagnostic virtual [l]ines" })
+end, { desc = "Show diagnostic virtual lines" })
 
 m("n", "<leader>kk", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 
--- {{ Terminal }}
+-- [[ Terminal ]]
 
 m("n", "<leader>t", function()
   vim.cmd.new()
@@ -54,10 +61,7 @@ end, { desc = "Open terminal" })
 -- Exit terminal mode in the builtin terminal
 m("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- {{ Quality of life }}
-
--- Clear highlights on search when pressing <Esc> in normal mode
-m("n", "<Esc>", "<cmd>nohlsearch<CR>")
+-- [[ Quality of life ]]
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 m("n", "<Esc>", "<cmd>nohlsearch<CR>")
@@ -71,4 +75,4 @@ m("n", "dd", function()
 end, { expr = true, silent = true })
 
 -- Cursor stays in place after yanking in visual mode
-m("v", "y", "ygv<esc>")
+m("v", "y", "ygv<esc>", { expr = true, silent = true })

@@ -32,14 +32,11 @@ local opts = {
   cursorline = true,
   scrolloff = 8,
 
-  -- Searching
+  -- Search
   hlsearch = true,
   incsearch = true,
   ignorecase = true,
   smartcase = true,
-
-  -- greprg = 'rg --vimgrep'
-  -- grepformat = '%f%l%c%m'
 
   -- Splitting windows
   splitbelow = true,
@@ -58,14 +55,15 @@ local opts = {
   -- Mapped sequence wait time
   timeoutlen = 1000,
 
-  -- Sets how neovim will display certain whitespace characters in the editor.
+  -- Display whitespace characters
   list = true,
   listchars = { tab = "» ", trail = "·", nbsp = "␣" },
 
   -- Preview substitutions live, as you type!
   inccommand = "split",
 
-  winborder = "rounded", -- panel and window borders
+  -- Panel and window borders
+  winborder = "rounded",
 }
 
 for k, v in pairs(opts) do

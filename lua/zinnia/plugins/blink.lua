@@ -16,7 +16,7 @@ load({
 
       completion = {
         menu = {
-          border = vim.g.borderStyle,
+          border = vim.g.winborder,
           draw = {
             columns = {
               { "kind_icon" },
@@ -26,7 +26,7 @@ load({
           },
         },
         documentation = {
-          window = { border = vim.g.borderStyle },
+          window = { border = vim.g.winborder },
           auto_show = true,
           auto_show_delay_ms = 200,
         },
@@ -36,7 +36,7 @@ load({
 
       signature = {
         enabled = true,
-        window = { border = vim.g.borderStyle },
+        window = { border = vim.g.winborder },
       },
     })
   end,

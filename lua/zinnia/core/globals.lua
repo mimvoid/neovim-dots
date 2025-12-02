@@ -3,9 +3,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.g.have_nerd_font = true
-vim.g.borderStyle = "rounded"
+vim.g.winborder = "rounded"
 
--- Disable some built-in plugins
+-- Disable unused built-in plugins
 local disabled_built_ins = {
   "netrw",
   "netrwPlugin",
