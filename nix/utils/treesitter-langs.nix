@@ -5,7 +5,7 @@ with plugins;
   lua vim vimdoc
   nix
   c c_sharp cpp
-  vala blueprint
+  vala
   rust nim
   go gotmpl
   html css scss javascript typescript
