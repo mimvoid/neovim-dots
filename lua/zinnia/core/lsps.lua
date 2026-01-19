@@ -4,6 +4,7 @@ local lsps = {
   "ruff",
   "clangd",
   "gopls",
+  "jdtls",
   "nixd",
   "rust_analyzer",
   "teal_ls",
