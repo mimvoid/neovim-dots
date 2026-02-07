@@ -75,4 +75,4 @@ m("n", "dd", function()
 end, { expr = true, silent = true })
 
 -- Cursor stays in place after yanking in visual mode
-m("v", "y", "ygv<esc>", { expr = true, silent = true })
+m("v", "y", "ygv<esc>", { silent = true })
