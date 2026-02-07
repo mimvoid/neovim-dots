@@ -31,6 +31,23 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+-- See https://github.com/L3MON4D3/LuaSnip/issues/258
+vim.api.nvim_create_autocmd("ModeChanged", {
+  desc = "Leave luasnip session when switching to normal mode.",
+  pattern = "*",
+  callback = function()
+    -- Check if luasnip is available
+    local ok, luasnip = pcall(require, "luasnip")
+    if ok then
+      if (vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i" then
+        if luasnip.session.current_nodes[vim.api.nvim_get_current_buf()] and not luasnip.session.jump_active then
+          luasnip.unlink_current()
+        end
+      end
+    end
+  end,
+})
+
 -- LSP
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
