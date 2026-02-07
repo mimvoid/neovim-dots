@@ -7,7 +7,7 @@ return {
         enabled = true,
         semicolon = {
           enabled = true,
-          ft = { "nix", "javascript", "typescript" },
+          ft = { "cs", "c", "cpp", "java", "nix", "javascript", "typescript" },
         },
       },
     })
