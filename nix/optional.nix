@@ -53,7 +53,7 @@ in
       conform-nvim
 
       snacks-nvim
-      guess-indent-nvim
+      indent-o-matic
       marks-nvim
       tiny-inline-diagnostic-nvim
     ]
