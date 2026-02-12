@@ -54,6 +54,7 @@ in
       snacks-nvim
       guess-indent-nvim
       marks-nvim
+      tiny-inline-diagnostic-nvim
     ]
     ++ [ treesitter ]
     ++ cmp
