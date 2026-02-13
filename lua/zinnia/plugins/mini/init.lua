@@ -4,8 +4,6 @@ require("zinnia.plugins.mini.hipatterns")
 require("zinnia.plugins.mini.pick")
 require("zinnia.plugins.mini.starter")
 
-local c = require("zinnia.colors")
-
 require("mini.ai").setup({ n_lines = 500 })
 require("mini.move").setup()
 require("mini.surround").setup()
@@ -22,14 +20,13 @@ require("mini.diff").setup({
 
 require("mini.tabline").setup({
   format = function(buf_id, label)
-    local faded = { fg = c.base16.base03 }
     local hl = {
-      Current = { fg = c.hues.cyan, bold = true },
-      ModifiedCurrent = { fg = c.hues.red, bold = true },
-      Visible = faded,
-      ModifiedVisible = faded,
-      Hidden = faded,
-      ModifiedHidden = faded,
+      Current = { link = "DiagnosticFloatingHint" },
+      ModifiedCurrent = { link = "DiagnosticFloatingError" },
+      Visible = { link = "Conceal" },
+      ModifiedVisible = { link = "Conceal" },
+      Hidden = { link = "Conceal" },
+      ModifiedHidden = { link = "Conceal" },
     }
     for k, v in pairs(hl) do
       vim.api.nvim_set_hl(0, "MiniTabline" .. k, v)
@@ -40,7 +37,7 @@ require("mini.tabline").setup({
   end,
 })
 
-vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = c.base16.base02 })
+vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "Conceal" })
 require("mini.indentscope").setup({
   draw = {
     delay = 50,
