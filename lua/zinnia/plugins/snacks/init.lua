@@ -54,22 +54,29 @@ require("lz.n").load({
     },
 
     pick("<leader>", "buffers", "Buffers"),
-    {
-      "<leader>m",
-      function()
-        -- HACK: only show alphabetic marks
-        Snacks.picker.marks({ pattern = "!0 !1 !2 !3 !4 !5 !6 !7 !8 !9 !^' !\" ![ !] !< !> !^. !^^" })
-      end,
-      desc = "Find marks",
-    },
-    pick("M", "marks", "Find all marks"),
+    -- {
+    --   "<leader>m",
+    --   function()
+    --     -- HACK: only show alphabetic marks
+    --     Snacks.picker.marks({ pattern = "!0 !1 !2 !3 !4 !5 !6 !7 !8 !9 !^' !\" ![ !] !< !> !^. !^^" })
+    --   end,
+    --   desc = "Find marks",
+    -- },
+    -- pick("M", "marks", "Find all marks"),
 
     pick("/", "grep", "Find by grep"),
     pick(":", "command_history", "Search command history"),
     pick("z", "zoxide", "Find by zoxide"),
 
+    {
+      "<leader>fk",
+      function()
+        Snacks.picker.keymaps({ preview = "none" })
+      end,
+      desc = "Find keymaps",
+    },
+
     pick("fh", "help"),
-    pick("fk", "keymaps"),
     pick("ff", "files"),
     pick("fr", "recent", "Find recent files"),
     pick("fw", "grep_word", "Find current word"),
