@@ -34,7 +34,6 @@ local opts = {
     blink_cmp = { enabled = true },
     mini = { enabled = true },
     rainbow_delimiters = true,
-    snacks = { enabled = true },
   },
 
   -- Set custom color palette, since I don't use frappe

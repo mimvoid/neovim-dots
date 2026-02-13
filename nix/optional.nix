@@ -52,7 +52,6 @@ in
       nvim-lint
       conform-nvim
 
-      snacks-nvim
       indent-o-matic
       marks-nvim
       tiny-inline-diagnostic-nvim

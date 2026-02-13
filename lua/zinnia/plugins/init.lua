@@ -2,7 +2,6 @@
 require("zinnia.plugins.colorscheme")
 require("zinnia.plugins.debug")
 require("zinnia.plugins.mini")
-require("zinnia.plugins.snacks")
 require("zinnia.plugins.snippets")
 require("zinnia.plugins.blink")
 
