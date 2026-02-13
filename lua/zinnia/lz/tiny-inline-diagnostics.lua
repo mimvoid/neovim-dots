@@ -1,6 +1,6 @@
 return {
   "tiny-inline-diagnostic.nvim",
-  event = "DeferredUIEnter",
+  event = "LspAttach",
   after = function()
     require("tiny-inline-diagnostic").setup({
       preset = "classic",
