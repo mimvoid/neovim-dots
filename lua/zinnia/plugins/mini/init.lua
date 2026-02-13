@@ -1,6 +1,7 @@
 require("zinnia.plugins.mini.clue")
 require("zinnia.plugins.mini.files")
 require("zinnia.plugins.mini.hipatterns")
+require("zinnia.plugins.mini.pick")
 require("zinnia.plugins.mini.starter")
 
 local c = require("zinnia.colors")
@@ -50,3 +51,5 @@ require("mini.indentscope").setup({
     try_as_border = true,
   },
 })
+
+require("mini.extra").setup()
