@@ -4,29 +4,18 @@ return {
     "nvim-treesitter",
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     after = function()
-      require("nvim-treesitter").setup({
-        auto_install = false,
+      -- Enable highlights and indentation on supported filetypes
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          local buf, filetype = args.buf, args.match
+          local lang = vim.treesitter.language.get_lang(filetype)
 
-        endwise = { enable = true }, -- For nvim-treesitter-endwise
-        matchup = { enable = true },
-
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-          disable = { "latex" },
-        },
-
-        indent = { enable = true, disable = { "ruby" } },
-
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<leader>s",
-            node_decremental = "<bs>",
-            node_incremental = "<leader>s",
-          },
-        },
+          -- Check if the language's parser is loaded
+          if lang and vim.treesitter.language.add(lang) then
+            vim.treesitter.start(buf, lang)
+          end
+        end
       })
     end,
-  }
+  },
 }
