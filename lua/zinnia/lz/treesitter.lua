@@ -1,5 +1,6 @@
 return {
   { "nvim-treesitter-endwise" },
+  { "vim-matchup" },
   {
     "nvim-treesitter",
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
