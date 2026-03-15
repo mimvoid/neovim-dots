@@ -41,6 +41,7 @@ return {
         nim = { "nimpretty" },
         nix = { "nixfmt" },
         ocaml = { "ocamlformat" },
+        rust = { "rustfmt", lsp_format = "fallback" },
       },
 
       notify_on_error = false,
