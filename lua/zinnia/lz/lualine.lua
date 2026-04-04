@@ -3,8 +3,6 @@ return {
   after = function()
     require("lualine").setup({
       options = {
-        theme = "catppuccin",
-
         always_divide_middle = false,
         globalstatus = true,
         icons_enabled = true,

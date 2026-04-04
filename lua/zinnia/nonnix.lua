@@ -1,48 +1,59 @@
--- Load plugins via Paq when not on Nix
+-- Install and load plugins via vim.pack when not on Nix
 
-require("nixCatsUtils.paq").setup({
+vim.pack.add{
   -- Startup --
-  { "lumen-oss/lz.n" },
-  { "nvim-mini/mini.nvim" },
-  { "catppuccin/nvim" },
-  { "lervag/vimtex" },
+  "https://github.com/lumen-oss/lz.n",
+  "https://github.com/nvim-mini/mini.nvim",
+  "https://github.com/catppuccin/nvim",
+  "https://github.com/lervag/vimtex",
 
   -- Optionals --
-  { "folke/snacks.nvim", opt = true },
-  { "nmac427/guess-indent.nvim", opt = true },
-  { "chentoast/marks.nvim", opt = true },
+  "https://github.com/Darazaki/indent-o-matic.nvim",
+  "https://github.com/chentoast/marks.nvim",
 
   -- lsps & diagnostics
-  { "neovim/nvim-lspconfig", opt = true },
-  { "williamboman/mason.nvim", opt = true },
+  "https://github.com/neovim/nvim-lspconfig",
+  "https://github.com/williamboman/mason.nvim",
+  "https://github.com/rachartier/tiny-inline-diagnostic.nvim",
 
   -- lint and format
-  { "mfussenegger/nvim-lint", opt = true },
-  { "stevearc/conform.nvim", opt = true },
+  "https://github.com/mfussenegger/nvim-lint",
+  "https://github.com/stevearc/conform.nvim",
 
   -- treesitter
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", opt = true },
-  { "RRethy/nvim-treesitter-endwise", opt = true },
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  "https://github.com/RRethy/nvim-treesitter-endwise",
 
   -- looks
-  { "nvim-tree/nvim-web-devicons", opt = true },
-  { "nvim-lualine/lualine.nvim", opt = true },
-  { "rachartier/tiny-devicons-auto-colors.nvim", opt = true },
-  { "HiPhish/rainbow-delimiters.nvim", opt = true },
-  { "brenoprata10/nvim-highlight-colors", opt = true },
+  "https://github.com/nvim-tree/nvim-web-devicons",
+  "https://github.com/nvim-lualine/lualine.nvim",
+  "https://github.com/rachartier/tiny-devicons-auto-colors.nvim",
+  "https://github.com/HiPhish/rainbow-delimiters.nvim",
+  "https://github.com/brenoprata10/nvim-highlight-colors",
 
   -- completion
-  { "L3MON4D3/LuaSnip", opt = true, as = "luasnip" },
-  { "rafamadriz/friendly-snippets", opt = true },
-  { "Saghen/blink.cmp", opt = true },
-  { "Saghen/blink.compat", opt = true },
+  { src = "https://github.com/L3MON4D3/LuaSnip", name = "luasnip" },
+  "https://github.com/rafamadriz/friendly-snippets",
+  "https://github.com/saghen/blink.cmp",
+  "https://github.com/saghen/blink.compat",
 
   -- debug
-  { "mfussenegger/nvim-dap", opt = true },
-  { "miroshQa/debugmaster.nvim", opt = true },
+  "https://github.com/mfussenegger/nvim-dap",
+  "https://github.com/MironPascalCaseFan/debugmaster.nvim",
 
   -- typing
-  { "altermo/ultimate-autopair.nvim", opt = true },
-  { "windwp/nvim-ts-autotag", opt = true },
-  { "kawre/neotab.nvim", opt = true },
+  "https://github.com/altermo/ultimate-autopair.nvim",
+  "https://github.com/windwp/nvim-ts-autotag",
+  "https://github.com/kawre/neotab.nvim",
+})
+
+-- Update treesitter parsers when nvim-treesitter updates
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function()
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == "nvim-treesitter" and kind == "update" then
+      if not ev.data.active then vim.cmd.packadd("nvim-treesitter") end
+      vim.cmd("TSUpdate")
+    end
+  end,
 })
