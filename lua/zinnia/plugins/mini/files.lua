@@ -4,6 +4,10 @@ require("mini.files").setup({
   windows = { width_focus = 25, width_nofocus = 15 },
 })
 
+-- Disable built-in file manager
+vim.g.loaded_netrw = 1;
+vim.g.loaded_netrwPlugin = 1;
+
 vim.keymap.set("n", "<leader>e", function()
   if vim.bo.buftype == "" then
     MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
