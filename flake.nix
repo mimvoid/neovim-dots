@@ -1,5 +1,5 @@
 {
-  description = "My neovim flake, with extra cats! nixCats!";
+  description = "mimvoid's neovim flake, with extra cats! nixCats!";
 
   inputs = {
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";

@@ -1,32 +1,58 @@
 # lspsAndRuntimeDeps
-
 { pkgs }:
-let
-  # List LSPs & formatter in a separate file
-  langs = import ./utils/languages.nix { inherit pkgs; };
 
-  # Specify which languages' tools to include
-  used-langs = pkgs.lib.lists.flatten (
-    with langs;
-    [
-      nix
-      c
-      lua
-      latex
-      markdown
-      python
-      typescript
-    ]
-  );
-in
-{
-  general =
-    with pkgs;
-    [
-      universal-ctags
-      tree-sitter
-      ripgrep
-      prettierd
-    ]
-    ++ used-langs;
+rec {
+  general = [
+    pkgs.universal-ctags
+    pkgs.tree-sitter
+    pkgs.ripgrep
+    pkgs.prettierd
+  ]
+  ++ nix
+  ++ c
+  ++ lua
+  ++ latex
+  ++ markdown
+  ++ python
+  ++ typescript;
+
+  bash = [ pkgs.bash-language-server ];
+  c = [ pkgs.gdb ];
+  css = [ pkgs.stylelint ];
+
+  go = [
+    pkgs.gopls
+    pkgs.gotools
+    pkgs.go-tools
+  ];
+
+  java = [ pkgs.jdt-language-server ];
+  latex = [ pkgs.texlab ];
+
+  lua = [
+    pkgs.stylua
+    pkgs.selene
+  ];
+
+  markdown = [ pkgs.markdownlint-cli2 ];
+  nim = [ pkgs.nimlangserver ];
+
+  nix = [
+    pkgs.nixd
+    pkgs.statix
+    pkgs.nixfmt
+  ];
+
+  python = [
+    pkgs.basedpyright
+    pkgs.ruff
+  ];
+
+  rust = [ pkgs.rust-analyzer ];
+  typescript = [ pkgs.vtsls ];
+
+  vala = [
+    pkgs.vala-lint
+    pkgs.vala-language-server
+  ];
 }
