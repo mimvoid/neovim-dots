@@ -20,24 +20,22 @@ require("mini.diff").setup({
 
 require("mini.tabline").setup({
   format = function(buf_id, label)
-    local hl = {
-      Current = { link = "DiagnosticFloatingHint" },
-      ModifiedCurrent = { link = "DiagnosticFloatingError" },
-      Visible = { link = "Conceal" },
-      ModifiedVisible = { link = "Conceal" },
-      Hidden = { link = "Conceal" },
-      ModifiedHidden = { link = "Conceal" },
-    }
-    for k, v in pairs(hl) do
-      vim.api.nvim_set_hl(0, "MiniTabline" .. k, v)
-    end
-
     local suffix = vim.bo[buf_id].modified and "● " or ""
     return MiniTabline.default_format(buf_id, label) .. suffix
   end,
 })
+local hl = {
+  Current = { link = "DiagnosticFloatingHint" },
+  ModifiedCurrent = { link = "DiagnosticFloatingError" },
+  Visible = { link = "Conceal" },
+  ModifiedVisible = { link = "Conceal" },
+  Hidden = { link = "Conceal" },
+  ModifiedHidden = { link = "Conceal" },
+}
+for k, v in pairs(hl) do
+  vim.api.nvim_set_hl(0, "MiniTabline" .. k, v)
+end
 
-vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "Conceal" })
 require("mini.indentscope").setup({
   draw = {
     delay = 50,
@@ -48,5 +46,6 @@ require("mini.indentscope").setup({
     try_as_border = true,
   },
 })
+vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "Conceal" })
 
 require("mini.extra").setup()
