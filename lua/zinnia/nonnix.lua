@@ -45,6 +45,8 @@ vim.pack.add{
   "https://github.com/altermo/ultimate-autopair.nvim",
   "https://github.com/windwp/nvim-ts-autotag",
   "https://github.com/kawre/neotab.nvim",
+
+  "https://github.com/OXY2DEV/markview.nvim",
 })
 
 -- Update treesitter parsers when nvim-treesitter updates

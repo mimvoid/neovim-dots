@@ -4,6 +4,7 @@ require("zinnia.plugins.debug")
 require("zinnia.plugins.mini")
 require("zinnia.plugins.snippets")
 require("zinnia.plugins.blink")
+require("zinnia.plugins.markview")
 
 -- VimTeX
 vim.g.vimtex_callback_progpath = "nvim"
