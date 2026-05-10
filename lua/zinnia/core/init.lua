@@ -4,6 +4,23 @@ require("zinnia.core.keymaps")
 require("zinnia.core.autocmds")
 require("zinnia.core.lsps")
 
+-- Add filetype mappings
+
+vim.filetype.add({
+  extension = {
+    html = function(path, bufnr)
+      -- Detect Go templates in HTML
+      local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 20, false)
+      for _, line in ipairs(lines) do
+        if line:find("{{") then
+          return "gotmpl"
+        end
+      end
+      return "html"
+    end,
+  },
+})
+
 -- Built-in plugins
 
 vim.cmd.packadd("nvim.undotree")

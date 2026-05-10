@@ -20,17 +20,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  desc = "Detect go templates in html",
-  pattern = "*.html",
-  group = augroup,
-  callback = function()
-    if vim.fn.search("{{") ~= 0 then
-      vim.opt.filetype = "gotmpl"
-    end
-  end,
-})
-
 -- See https://github.com/L3MON4D3/LuaSnip/issues/258
 vim.api.nvim_create_autocmd("ModeChanged", {
   desc = "Leave luasnip session when switching to normal mode.",
