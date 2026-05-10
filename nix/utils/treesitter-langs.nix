@@ -17,4 +17,5 @@ with plugins;
   bash
   make
   ini
+  todotxt
 ]

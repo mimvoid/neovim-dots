@@ -18,6 +18,10 @@ vim.filetype.add({
       end
       return "html"
     end,
+    txt = function(path, bufnr)
+      -- Detect todo.txt files
+      return path:match("todo%.txt$") and "todotxt" or "text"
+    end,
   },
 })
 
