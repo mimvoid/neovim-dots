@@ -1,50 +1,42 @@
 local load = require("lz.n").load
 
-load({
-  "blink.cmp",
-  after = function()
-    require("blink.cmp").setup({
-      sources = {
-        providers = {
-          path = { opts = { trailing_slash = false } },
-          lsp = { min_keyword_length = 1 },
+vim.cmd.packadd("blink.cmp")
+require("blink.cmp").setup({
+  sources = {
+    providers = {
+      path = { opts = { trailing_slash = false } },
+      lsp = { min_keyword_length = 1 },
+    },
+  },
+
+  keymap = { preset = "default" },
+  appearance = { nerd_font_variant = "mono" },
+
+  completion = {
+    menu = {
+      border = vim.g.winborder,
+      draw = {
+        columns = {
+          { "kind_icon" },
+          { "label", "label_description" },
         },
+        treesitter = { "lsp" },
       },
+    },
+    documentation = {
+      window = { border = vim.g.winborder },
+      auto_show = true,
+      auto_show_delay_ms = 200,
+    },
+  },
 
-      keymap = { preset = "default" },
-      appearance = { nerd_font_variant = "mono" },
+  snippets = { preset = "luasnip" },
 
-      completion = {
-        menu = {
-          border = vim.g.winborder,
-          draw = {
-            columns = {
-              { "kind_icon" },
-              { "label", "label_description" },
-            },
-            treesitter = { "lsp" },
-          },
-        },
-        documentation = {
-          window = { border = vim.g.winborder },
-          auto_show = true,
-          auto_show_delay_ms = 200,
-        },
-      },
-
-      snippets = { preset = "luasnip" },
-
-      signature = {
-        enabled = true,
-        window = { border = vim.g.winborder },
-      },
-    })
-  end,
+  signature = {
+    enabled = true,
+    window = { border = vim.g.winborder },
+  },
 })
 
-load({
-  "blink.compat",
-  after = function()
-    require("blink.compat").setup({ impersonate_nvim_cmp = true })
-  end,
-})
+vim.cmd.packadd("blink.compat")
+require("blink.compat").setup({ impersonate_nvim_cmp = true })

@@ -1,20 +1,16 @@
 local snippets = require("zinnia.plugins.snippets.all")
-local load = require("lz.n").load
 
-load({ "friendly-snippets" })
-load({
-  "luasnip",
-  after = function()
-    -- for friendly-snippets
-    require("luasnip.loaders.from_vscode").lazy_load()
+vim.cmd.packadd("friendly-snippets")
+vim.cmd.packadd("luasnip")
 
-    local ls = require("luasnip")
+-- for friendly-snippets
+require("luasnip.loaders.from_vscode").lazy_load()
 
-    ls.config.set_config({
-      enable_autosnippets = true,
-      store_selection_keys = "<Tab>",
-    })
+local luasnip = require("luasnip")
 
-    ls.add_snippets("all", snippets(ls))
-  end,
+luasnip.config.set_config({
+  enable_autosnippets = true,
+  store_selection_keys = "<Tab>",
 })
+
+luasnip.add_snippets("all", snippets(luasnip))
