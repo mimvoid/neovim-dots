@@ -12,11 +12,10 @@ local lsps = {
   "vala_ls",
   "vtsls",
 }
-
 for i = 1, #lsps do
-  local v = lsps[i]
-  if vim.fn.executable(vim.fn.exepath(v)) then
-    vim.lsp.enable(v)
+  local lsp = lsps[i]
+  if vim.fn.executable(vim.fn.exepath(lsp)) then
+    vim.lsp.enable(lsp)
   end
 end
 
@@ -79,9 +78,9 @@ local lsps_with_config = {
   },
 }
 
-for k, v in pairs(lsps_with_config) do
-  if vim.fn.executable(vim.fn.exepath(k)) then
-    vim.lsp.config(k, v)
-    vim.lsp.enable(k)
+for lsp, config in pairs(lsps_with_config) do
+  if vim.fn.executable(vim.fn.exepath(lsp)) then
+    vim.lsp.config(lsp, config)
+    vim.lsp.enable(lsp)
   end
 end

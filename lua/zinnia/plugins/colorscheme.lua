@@ -1,7 +1,7 @@
 local b = require("zinnia.colors").base16
 local c = require("zinnia.colors").hues
 
-local opts = {
+require("catppuccin").setup({
   transparent_background = true,
   float = { transparent = true },
 
@@ -80,7 +80,6 @@ local opts = {
       sapphire = c.cyan,
     },
   },
-}
+})
 
-require("catppuccin").setup(opts)
 vim.cmd.colorscheme("catppuccin")
