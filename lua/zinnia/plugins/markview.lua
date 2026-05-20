@@ -1,3 +1,5 @@
+vim.cmd.packadd("markview.nvim")
+
 local presets = require("markview.presets")
 
 require("markview.spec").setup({

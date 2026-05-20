@@ -43,6 +43,8 @@ in
       nvim-treesitter-endwise
       vim-matchup
       nvim-spider
+
+      markview-nvim
       ;
 
     inherit (voids) neotab;
