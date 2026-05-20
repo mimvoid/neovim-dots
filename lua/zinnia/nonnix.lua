@@ -1,6 +1,6 @@
 -- Install and load plugins via vim.pack when not on Nix
 
-vim.pack.add{
+vim.pack.add({
   -- Startup --
   "https://github.com/lumen-oss/lz.n",
   "https://github.com/nvim-mini/mini.nvim",
