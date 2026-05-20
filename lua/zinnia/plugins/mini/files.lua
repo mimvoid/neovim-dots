@@ -10,10 +10,17 @@ vim.g.loaded_netrwPlugin = 1;
 
 vim.keymap.set("n", "<leader>e", function()
   if vim.bo.buftype == "" then
-    MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-  else
-    MiniFiles.open()
+    -- Not in a special buffer type, try to open at the current file.
+    local file_path = vim.api.nvim_buf_get_name(0)
+    if pcall(MiniFiles.open, file_path, false) then
+      return
+    end
+    -- Try to open at the current file's directory instead.
+    if pcall(MiniFiles.open, vim.fs.dirname(file_path), false) then
+      return
+    end
   end
+  MiniFiles.open()
 end, { desc = "Open mini.files" })
 
 -- [[ Taken from Snacks.rename ]]
