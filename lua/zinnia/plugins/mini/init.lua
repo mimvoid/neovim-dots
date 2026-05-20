@@ -1,3 +1,5 @@
+vim.cmd.packadd("mini.nvim")
+
 require("zinnia.plugins.mini.clue")
 require("zinnia.plugins.mini.files")
 require("zinnia.plugins.mini.hipatterns")

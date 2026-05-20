@@ -5,8 +5,4 @@ require("zinnia.plugins.mini")
 require("zinnia.plugins.snippets")
 require("zinnia.plugins.blink")
 require("zinnia.plugins.markview")
-
--- VimTeX
-vim.g.vimtex_callback_progpath = "nvim"
-vim.g.vimtex_enabled = true
-vim.g.vimtex_view_method = "zathura"
+require("zinnia.plugins.vimtex")

@@ -1,6 +1,7 @@
 local b = require("zinnia.colors").base16
 local c = require("zinnia.colors").hues
 
+vim.cmd.packadd("catppuccin-nvim")
 require("catppuccin").setup({
   transparent_background = true,
   float = { transparent = true },

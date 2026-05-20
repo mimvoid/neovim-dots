@@ -20,8 +20,10 @@
         { pkgs, ... }:
         {
           lspsAndRuntimeDeps = import ./nix/runtime.nix { inherit pkgs; };
-          startupPlugins = import ./nix/startup.nix { inherit pkgs; };
           optionalPlugins = import ./nix/optional.nix { inherit pkgs; };
+
+          # Plugins that will load at startup without using packadd
+          startupPlugins = { general = []; };
 
           sharedLibraries = { };
           environmentVariables = { };

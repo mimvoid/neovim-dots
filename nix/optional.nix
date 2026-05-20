@@ -9,6 +9,10 @@ in
 {
   general = builtins.attrValues {
     inherit (pkgs.vimPlugins)
+      lz-n
+      mini-nvim
+      catppuccin-nvim
+
       nvim-lspconfig
       nvim-lint
       conform-nvim
@@ -44,7 +48,9 @@ in
       vim-matchup
       nvim-spider
 
+      # Language/filetype specific
       markview-nvim
+      vimtex
       ;
 
     inherit (voids) neotab;
