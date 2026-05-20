@@ -39,7 +39,7 @@ vim.pack.add({
 
   -- debug
   "https://github.com/mfussenegger/nvim-dap",
-  "https://github.com/MironPascalCaseFan/debugmaster.nvim",
+  "https://github.com/igorlfs/nvim-dap-view",
 
   -- typing
   "https://github.com/altermo/ultimate-autopair.nvim",

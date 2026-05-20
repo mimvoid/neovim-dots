@@ -39,9 +39,9 @@ dap.configurations.c = {
 dap.configurations.cpp = dap.configurations.c
 dap.configurations.rust = dap.configurations.c
 
--- Debugmaster
+-- Dap view
 
-vim.cmd.packadd("debugmaster.nvim")
+vim.cmd.packadd("nvim-dap-view")
+require("dap-view").setup({})
 
-local dm = require("debugmaster")
-vim.keymap.set("n", "<leader>d", dm.mode.toggle, { nowait = true })
+vim.keymap.set("n", "<leader>d", require("dap-view").toggle, { nowait = true })

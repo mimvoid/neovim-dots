@@ -39,7 +39,7 @@ in
 
       # Debug
       nvim-dap
-      debugmaster-nvim
+      nvim-dap-view
 
       # Typing
       ultimate-autopair-nvim
