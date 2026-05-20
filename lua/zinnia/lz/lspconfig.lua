@@ -10,7 +10,7 @@ return {
 
     -- Use mason outside Nix
     if not nixcats.isNixCats then
-      vim.cmd.packadd("mason.nvim")
+      vim.pack.add({ "https://github.com/mason-org/mason.nvim" })
       require("mason").setup()
     end
   end,
