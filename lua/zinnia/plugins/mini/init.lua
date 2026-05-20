@@ -50,4 +50,7 @@ require("mini.indentscope").setup({
 })
 vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "Conceal" })
 
+require("mini.misc").setup()
+MiniMisc.setup_auto_root()
+
 require("mini.extra").setup()
