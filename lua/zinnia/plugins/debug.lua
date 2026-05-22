@@ -39,9 +39,17 @@ dap.configurations.c = {
 dap.configurations.cpp = dap.configurations.c
 dap.configurations.rust = dap.configurations.c
 
+vim.keymap.set("n", "<leader>dc", function()
+  require("dap").continue()
+end, { desc = "Launch or resume debug sessions" })
+
+vim.keymap.set("n", "<leader>db", function()
+  require("dap").toggle_breakpoint()
+end, { desc = "Toggle breakpoint" })
+
 -- Dap view
 
 vim.cmd.packadd("nvim-dap-view")
 require("dap-view").setup({})
 
-vim.keymap.set("n", "<leader>d", require("dap-view").toggle, { nowait = true })
+vim.keymap.set("n", "<leader>dv", require("dap-view").toggle, { nowait = true })
