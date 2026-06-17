@@ -15,6 +15,7 @@ return {
       c = { "clangtidy" },
       cpp = { "clangtidy" },
       bash = { "bash" },
+      kotlin = { "ktlint" },
       latex = { "chktex" },
       lua = { "selene" },
       markdown = { "markdownlint-cli2" },

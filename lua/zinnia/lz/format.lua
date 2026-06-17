@@ -36,6 +36,7 @@ return {
         yaml = prettier,
 
         go = { "gofmt" },
+        kotlin = { "ktfmt", "ktlint", stop_after_first = true },
         latex = { "latexindent" },
         lua = { "stylua" },
         nim = { "nimpretty" },
