@@ -84,3 +84,11 @@ for lsp, config in pairs(lsps_with_config) do
     vim.lsp.enable(lsp)
   end
 end
+
+-- Kotlin LSP may have different ways to launch
+if vim.fn.executable(vim.fn.exepath("kotlin-lsp")) then
+  vim.lsp.config("kotlin_lsp", { cmd = { "kotlin-lsp", "--stdio" } })
+  vim.lsp.enable("kotlin_lsp")
+elseif vim.fn.executable(vim.fn.exepath("intellij-server")) then
+  vim.lsp.enable("kotlin_lsp")
+end

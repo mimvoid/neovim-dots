@@ -10,7 +10,7 @@ with plugins;
   go gotmpl
   html css scss javascript typescript
   markdown markdown_inline
-  latex python r java
+  latex python r java kotlin
   teal
   json toml yaml xml csv
   gitignore
