@@ -13,10 +13,7 @@ local lsps = {
   "vtsls",
 }
 for i = 1, #lsps do
-  local lsp = lsps[i]
-  if vim.fn.executable(vim.fn.exepath(lsp)) then
-    vim.lsp.enable(lsp)
-  end
+  vim.lsp.enable(lsps[i])
 end
 
 -- LSPs with settings
@@ -79,16 +76,14 @@ local lsps_with_config = {
 }
 
 for lsp, config in pairs(lsps_with_config) do
-  if vim.fn.executable(vim.fn.exepath(lsp)) then
-    vim.lsp.config(lsp, config)
-    vim.lsp.enable(lsp)
-  end
+  vim.lsp.config(lsp, config)
+  vim.lsp.enable(lsp)
 end
 
 -- Kotlin LSP may have different ways to launch
-if vim.fn.executable(vim.fn.exepath("kotlin-lsp")) then
+if vim.fn.executable(vim.fn.exepath("kotlin-lsp")) == 1 then
   vim.lsp.config("kotlin_lsp", { cmd = { "kotlin-lsp", "--stdio" } })
   vim.lsp.enable("kotlin_lsp")
-elseif vim.fn.executable(vim.fn.exepath("intellij-server")) then
+elseif vim.fn.executable(vim.fn.exepath("intellij-server")) == 1 then
   vim.lsp.enable("kotlin_lsp")
 end
